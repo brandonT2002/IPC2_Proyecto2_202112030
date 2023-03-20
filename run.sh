@@ -1,0 +1,2 @@
+clear
+python read.py
