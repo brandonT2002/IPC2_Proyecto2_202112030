@@ -1,4 +1,4 @@
-from ElementNode import ElementNode
+from Elements.ElementNode import ElementNode
 
 class LinkedListElement:
     def __init__(self):
@@ -10,6 +10,7 @@ class LinkedListElement:
             self.last.next = ElementNode(element)
             self.last.prev = self.last
             self.last = self.last.next
+            return
         self.first = ElementNode(element)
         self.last = self.first
 

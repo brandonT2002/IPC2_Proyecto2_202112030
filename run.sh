@@ -1,2 +1,2 @@
 clear
-python read.py
+python Main.py

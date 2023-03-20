@@ -1,4 +1,4 @@
-from Element import Element
+from Elements.Element import Element
 class ElementNode:
     def __init__(self,element):
         self.element : Element = element
