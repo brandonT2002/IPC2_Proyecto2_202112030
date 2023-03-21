@@ -1,6 +1,6 @@
-from Machine.ElementPinNode import ElementNode
+from Machines.ElementPinNode import ElementNode
 
-class LinkedListElementPin:
+class LinkedListsElementPin:
     def __init__(self):
         self.first = None
         self.last = None
