@@ -1,11 +1,11 @@
 from Elements.ElementNode import ElementNode
 
-class LinkedListElement:
+class LinkedListElements:
     def __init__(self):
         self.first = None
         self.last = None
 
-    def insertElement(self,element):
+    def insert(self,element):
         if self.first:
             self.last.next = ElementNode(element)
             self.last.prev = self.last
@@ -22,14 +22,14 @@ class LinkedListElement:
             current = current.next
         return False
 
-    def validateStatement(self,atomicNum):
+    def validateStatement(self,element):
         current = self.first
         while current:
-            if current.element.atomcNum == atomicNum:
-                return current.element.atomcNum
+            if current.element.symbol == element:
+                return current.element.symbol
             current = current.next
 
-    def iteratedList(self):
+    def iterated(self):
         current = self.first
         while current:
             print(f'No. Atómico {current.element.atomcNum}',f'Simbolo: {current.element.symbol}',f'Nombre: {current.element.name}')

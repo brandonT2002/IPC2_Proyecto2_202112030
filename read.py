@@ -1,5 +1,7 @@
 from xml.dom import minidom
 from Elements.Element import Element
+from Machines.Machine import Machine
+from Machines.LinkedListElementsPin import LinkedListElementsPin
 
 class Read:
     def readFile(self,path):
@@ -13,27 +15,28 @@ class Read:
             nAtom = element.getElementsByTagName('numeroAtomico')[0].firstChild.data
             symbol = element.getElementsByTagName('simbolo')[0].firstChild.data
             name = element.getElementsByTagName('nombreElemento')[0].firstChild.data
-            llElements.insertElement(Element(nAtom,symbol,name))
+            llElements.insert(Element(nAtom,symbol,name))
         return llElements
 
-    def getMachines(self):
+    def getMachines(self,llMachines):
         print('\nMaquinas')
         machines = self.file.getElementsByTagName('Maquina')
         for machine in machines:
             name = machine.getElementsByTagName('nombre')[0].firstChild.data
             numPins = machine.getElementsByTagName('numeroPines')[0].firstChild.data
             numElements = machine.getElementsByTagName('numeroElementos')[0].firstChild.data
-            print(name)
-            print('  Pines',numPins)
-            print('  Elementos',numElements)
+            
             pins = machine.getElementsByTagName('pin')
+            machineN = Machine()
             for pin in pins:
-                print(f'  Pin {pins.index(pin)}')
                 elements = pin.getElementsByTagName('elemento')
+                llElementsPin = LinkedListElementsPin()
                 for element in elements:
                     element = element.firstChild.data
-                    print('    ',element)
-            print()
+                    llElementsPin.insert(element)
+                machineN.insert(llElementsPin)
+            llMachines.insert(name,numPins,numElements,machineN)
+        return llMachines
 
     def getCompounds(self):
         print('Compuestos')

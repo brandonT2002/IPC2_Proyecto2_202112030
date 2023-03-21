@@ -5,7 +5,7 @@ class LinkedListElementsPin:
         self.first = None
         self.last = None
 
-    def insertElement(self,element):
+    def insert(self,element):
         if self.first:
             self.last.next = ElementNode(element)
             self.last.prev = self.last
@@ -14,7 +14,7 @@ class LinkedListElementsPin:
         self.first = ElementNode(element)
         self.last = self.first
 
-    def iteratedList(self):
+    def iterated(self):
         current = self.first
         while current:
             print('Elemento:',current.element)
