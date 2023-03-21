@@ -14,9 +14,8 @@ class LinkedListElementPin:
         self.first = ElementNode(element)
         self.last = self.first
 
-    def validateStatement(self,atomicNum):
+    def iteratedList(self):
         current = self.first
         while current:
-            if current.element.atomcNum == atomicNum:
-                return current.element.atomcNum
+            print('Elemento:',current.element)
             current = current.next
