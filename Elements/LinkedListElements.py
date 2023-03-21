@@ -22,6 +22,13 @@ class LinkedListElement:
             current = current.next
         return False
 
+    def validateStatement(self,atomicNum):
+        current = self.first
+        while current:
+            if current.element.atomcNum == atomicNum:
+                return current.element.atomcNum
+            current = current.next
+
     def iteratedList(self):
         current = self.first
         while current:
