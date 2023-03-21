@@ -2,6 +2,7 @@ from xml.dom import minidom
 from Elements.Element import Element
 from Machines.Machine import Machine
 from Machines.LinkedListElementsPin import LinkedListElementsPin
+from Compounds.LinkedListElementsComp import LinkedListElementsComp
 
 class Read:
     def readFile(self,path):
@@ -10,7 +11,6 @@ class Read:
         self.elements = listelements.getElementsByTagName('elemento')
 
     def getElements(self,llElements):
-        print('\nElementos')
         for element in self.elements:
             nAtom = element.getElementsByTagName('numeroAtomico')[0].firstChild.data
             symbol = element.getElementsByTagName('simbolo')[0].firstChild.data
@@ -19,13 +19,12 @@ class Read:
         return llElements
 
     def getMachines(self,llMachines):
-        print('\nMaquinas')
         machines = self.file.getElementsByTagName('Maquina')
         for machine in machines:
             name = machine.getElementsByTagName('nombre')[0].firstChild.data
             numPins = machine.getElementsByTagName('numeroPines')[0].firstChild.data
             numElements = machine.getElementsByTagName('numeroElementos')[0].firstChild.data
-            
+
             pins = machine.getElementsByTagName('pin')
             machineN = Machine()
             for pin in pins:
@@ -38,17 +37,17 @@ class Read:
             llMachines.insert(name,numPins,numElements,machineN)
         return llMachines
 
-    def getCompounds(self):
-        print('Compuestos')
+    def getCompounds(self,llCompounds):
         compounds = self.file.getElementsByTagName('compuesto')
         for compound in compounds:
             name = compound.getElementsByTagName('nombre')[0].firstChild.data
             elements = compound.getElementsByTagName('elemento')
-            print(name)
+            elementsN = LinkedListElementsComp()
             for element in elements:
                 element = element.firstChild.data
-                print('  ',element)
-            print()
+                elementsN.insert(element)
+            llCompounds.insert(name,elementsN)
+        return llCompounds
 
 # read = Read()
 # read.readFile('entrada.xml')
