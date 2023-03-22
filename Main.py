@@ -1,4 +1,4 @@
-from Read import Read
+from Read.Read import Read
 from Elements.LinkedListElements import LinkedListElements
 from Machines.LinkedListMachines import LinkedListMachines
 from Compounds.LinkedListCompounds import LinkedListCompounds
