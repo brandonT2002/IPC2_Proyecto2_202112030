@@ -18,7 +18,7 @@ class Read:
             llElements.insert(Element(nAtom,symbol,name))
         return llElements
 
-    def getMachines(self,llMachines):
+    def getMachines(self,llElements,llMachines):
         machines = self.file.getElementsByTagName('Maquina')
         for machine in machines:
             name = machine.getElementsByTagName('nombre')[0].firstChild.data
@@ -32,7 +32,7 @@ class Read:
                 llElementsPin = LinkedListElementsPin()
                 for element in elements:
                     element = element.firstChild.data
-                    llElementsPin.insert(element)
+                    llElementsPin.insert(llElements.validateStatement(element))
                 machineN.insert(llElementsPin)
             llMachines.insert(name,numPins,numElements,machineN)
         return llMachines
