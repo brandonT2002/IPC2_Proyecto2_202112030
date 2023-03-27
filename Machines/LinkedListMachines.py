@@ -24,3 +24,11 @@ class LinkedListMachines:
             print('Pines:',current.numPins,'Elementos:',current.numElements)
             current.machine.iterated()
             current = current.next
+
+    def getDot(self,index):
+        current = self.first
+        while current:
+            if current.index == index:
+                current.machine.getDot()
+                return
+            current = current.next

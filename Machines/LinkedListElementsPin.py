@@ -4,18 +4,49 @@ class LinkedListElementsPin:
     def __init__(self):
         self.first = None
         self.last = None
+        self.index = 0
+        self.current : ElementNode = self.first
+
+    # movimientos
+    def moveRight(self) -> bool:
+        if self.current.next:
+            self.current = self.current.next
+            return True
+        return False
+
+    def moveLeft(self) -> bool:
+        if self.current.prev:
+            self.current = self.current.prev
+            return True
+        return False
+
+    def getCurrent(self) -> ElementNode:
+        return self.current
 
     def insert(self,element):
         if self.first:
-            self.last.next = ElementNode(element)
+            self.last.next = ElementNode(self.index,element)
             self.last.prev = self.last
             self.last = self.last.next
+            self.index += 1
             return
-        self.first = ElementNode(element)
+        self.first = ElementNode(self.index,element)
         self.last = self.first
+        self.index += 1
 
     def iterated(self):
         current = self.first
         while current:
-            print('Elemento:',current.element)
+            print('Elemento:',current.element.symbol)
             current = current.next
+
+    def get(self,index) -> ElementNode:
+        current = self.first
+        while current:
+            if current.index == index:
+                return current
+            current = current.next
+        return None
+
+    def size(self):
+        return self.index

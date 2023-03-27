@@ -2,17 +2,20 @@ from Elements.ElementNode import ElementNode
 
 class LinkedListElements:
     def __init__(self):
-        self.first = None
-        self.last = None
+        self.first : ElementNode = None
+        self.last : ElementNode = None
+        self.index = 0
 
     def insert(self,element):
         if self.first:
-            self.last.next = ElementNode(element)
+            self.last.next = ElementNode(self.index,element)
             self.last.prev = self.last
             self.last = self.last.next
+            self.index += 1
             return
-        self.first = ElementNode(element)
+        self.first = ElementNode(self.index,element)
         self.last = self.first
+        self.index += 1
 
     def existElement(self,atomicNum,symbol,name):
         current = self.first
@@ -26,7 +29,7 @@ class LinkedListElements:
         current = self.first
         while current:
             if current.element.symbol == element:
-                return current.element.symbol
+                return current.element
             current = current.next
 
     def iterated(self):
