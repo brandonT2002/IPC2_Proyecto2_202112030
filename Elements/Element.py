@@ -6,18 +6,18 @@ class Element:
         self.symbol = symbol
         self.name = name
         while True:
-            self.color = self.Color3()
+            self.color = self.__Color()
             if self.color != "#050505":
                 break;
 
-    def Color1(self):
+    def __Color(self):
         color = ['#' + ''.join([random.choice('0123456789ABCDEF') for j in range(6)])]
         color = str(color)
         color = color.replace("['",'')
         color = color.replace("']",'')
         return color
 
-    def Color2(self):
+    def __Color(self):
         code = (self.name.lower() + " " * (12 - len(self.name))).encode('utf-8')[:12]
         r, g, b = code[0], code[1], code[2]
         r, g, b = r * 5, g * 7, b * 11
@@ -26,10 +26,10 @@ class Element:
             r, g, b = r * 0.8, g * 0.8, b * 0.8
         return "#{:02x}{:02x}{:02x}".format(int(r), int(g), int(b))
 
-    def Color3(self):
-        return self.obtener_color_accesible()
+    def __Color(self):
+        return self.__obtener_color_accesible()
 
-    def obtener_color_accesible(self):
+    def __obtener_color_accesible(self):
         """
         Esta función toma dos valores hexadecimales que representan los colores
         de fondo y de texto, y devuelve un color de fondo que cumpla con los
