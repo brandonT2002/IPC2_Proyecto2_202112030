@@ -1,4 +1,6 @@
 from Machines.PinNode import PinNode
+import os
+import webbrowser
 
 class Machine:
     def __init__(self):
@@ -56,4 +58,10 @@ class Machine:
         dot += '</TABLE>>\n'
         dot += '];\n'
         dot += '}'
-        print(dot)
+        #print(dot)
+
+        with open('Img/imgMachine.txt','w',encoding='utf-8') as report:
+            report.write(dot)
+
+        os.system('dot -Tjpg Img/imgMachine.txt -o Img/imgMachine.jpg')
+        webbrowser.open('Img\imgMachine.jpg')

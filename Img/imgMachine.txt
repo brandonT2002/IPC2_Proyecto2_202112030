@@ -1,0 +1,121 @@
+digraph maquina {
+node1 [shape=none, margin=0, label=
+<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">
+<tr>
+<td BGCOLOR="gray" width="60" height="30">Pin 0</td>
+<td BGCOLOR="#1E6181" width="100" height="30">1<br align="left"/>H<br/>Hidrógeno</td>
+<td BGCOLOR="#F25F89" width="100" height="30">2<br align="left"/>He<br/>Helio</td>
+<td BGCOLOR="#6CF0B6" width="100" height="30">3<br align="left"/>Li<br/>Litio</td>
+<td BGCOLOR="#E79584" width="100" height="30">4<br align="left"/>Be<br/>Berilio</td>
+<td BGCOLOR="#FD0689" width="100" height="30">5<br align="left"/>B<br/>Boro</td>
+<td BGCOLOR="#657BC7" width="100" height="30">6<br align="left"/>C<br/>Carbono</td>
+<td BGCOLOR="#67CAC9" width="100" height="30">7<br align="left"/>N<br/>Nitrógeno</td>
+<td BGCOLOR="#AE18AC" width="100" height="30">8<br align="left"/>O<br/>Oxígeno</td>
+<td BGCOLOR="#DED1DC" width="100" height="30">9<br align="left"/>F<br/>Flúor</td>
+<td BGCOLOR="#DF503B" width="100" height="30">10<br align="left"/>Ne<br/>Neón</td>
+<td BGCOLOR="#19D099" width="100" height="30">11<br align="left"/>Na<br/>Sodio</td>
+<td BGCOLOR="#5BE740" width="100" height="30">12<br align="left"/>Mg<br/>Magnesio</td>
+<td BGCOLOR="#C5E763" width="100" height="30">13<br align="left"/>Al<br/>Aluminio</td>
+<td BGCOLOR="#75706F" width="100" height="30">14<br align="left"/>Si<br/>Silicio</td>
+<td BGCOLOR="#589CA8" width="100" height="30">15<br align="left"/>P<br/>Fósforo</td>
+<td BGCOLOR="#8BEDE4" width="100" height="30">16<br align="left"/>S<br/>Azufre</td>
+<td BGCOLOR="#76D501" width="100" height="30">17<br align="left"/>Cl<br/>Cloro</td>
+<td BGCOLOR="#927169" width="100" height="30">18<br align="left"/>Ar<br/>Argón</td>
+<td BGCOLOR="#B6851A" width="100" height="30">19<br align="left"/>K<br/>Potasio</td>
+<td BGCOLOR="#4D5FE5" width="100" height="30">20<br align="left"/>Ca<br/>Calcio</td>
+</tr>
+<tr>
+<td BGCOLOR="gray" width="60" height="30">Pin 1</td>
+<td BGCOLOR="#E3E4BE" width="100" height="30">21<br align="left"/>Sc<br/>Escandio</td>
+<td BGCOLOR="#FE3954" width="100" height="30">22<br align="left"/>Ti<br/>Titanio</td>
+<td BGCOLOR="#67A8CE" width="100" height="30">23<br align="left"/>V<br/>Vanadio</td>
+<td BGCOLOR="#424536" width="100" height="30">24<br align="left"/>Cr<br/>Cromo</td>
+<td BGCOLOR="#5621F3" width="100" height="30">25<br align="left"/>Mn<br/>Manganeso</td>
+<td BGCOLOR="#A9F11E" width="100" height="30">26<br align="left"/>Fe<br/>Hierro</td>
+<td BGCOLOR="#D06412" width="100" height="30">27<br align="left"/>Co<br/>Cobalto</td>
+<td BGCOLOR="#26CF74" width="100" height="30">28<br align="left"/>Ni<br/>Níquel</td>
+<td BGCOLOR="#21C9FE" width="100" height="30">29<br align="left"/>Cu<br/>Cobre</td>
+<td BGCOLOR="#6C2D01" width="100" height="30">30<br align="left"/>Zn<br/>Zinc</td>
+<td BGCOLOR="#2D4E23" width="100" height="30">31<br align="left"/>Ga<br/>Galio</td>
+<td BGCOLOR="#388F62" width="100" height="30">32<br align="left"/>Ge<br/>Germanio</td>
+<td BGCOLOR="#BCC008" width="100" height="30">33<br align="left"/>As<br/>Arsénico</td>
+<td BGCOLOR="#761FD8" width="100" height="30">34<br align="left"/>Se<br/>Selenio</td>
+<td BGCOLOR="#9EFEDB" width="100" height="30">35<br align="left"/>Br<br/>Bromo</td>
+<td BGCOLOR="#79B99F" width="100" height="30">36<br align="left"/>Kr<br/>Kriptón</td>
+<td BGCOLOR="#22B536" width="100" height="30">37<br align="left"/>Rb<br/>Rubidio</td>
+<td BGCOLOR="#3072E2" width="100" height="30">38<br align="left"/>Sr<br/>Estroncio</td>
+<td BGCOLOR="#D31798" width="100" height="30">39<br align="left"/>Y<br/>Itrio</td>
+<td BGCOLOR="#9D20D3" width="100" height="30">40<br align="left"/>Zr<br/>Zirconio</td>
+</tr>
+<tr>
+<td BGCOLOR="gray" width="60" height="30">Pin 2</td>
+<td BGCOLOR="#9D03EB" width="100" height="30">41<br align="left"/>Nb<br/>Niobio</td>
+<td BGCOLOR="#DC83FC" width="100" height="30">42<br align="left"/>Mo<br/>Molibdeno</td>
+<td BGCOLOR="#6A55FD" width="100" height="30">43<br align="left"/>Tc<br/>Tecnecio</td>
+<td BGCOLOR="#BC8FCF" width="100" height="30">44<br align="left"/>Ru<br/>Rutenio</td>
+<td BGCOLOR="#34A9B2" width="100" height="30">45<br align="left"/>Rh<br/>Rodio</td>
+<td BGCOLOR="#D6340C" width="100" height="30">46<br align="left"/>Pd<br/>Paladio</td>
+<td BGCOLOR="#B3B0E7" width="100" height="30">47<br align="left"/>Ag<br/>Plata</td>
+<td BGCOLOR="#2054D1" width="100" height="30">48<br align="left"/>Cd<br/>Cadmio</td>
+<td BGCOLOR="#BE441D" width="100" height="30">49<br align="left"/>In<br/>Indio</td>
+<td BGCOLOR="#6B5B50" width="100" height="30">50<br align="left"/>Sn<br/>Estaño</td>
+<td BGCOLOR="#775C64" width="100" height="30">51<br align="left"/>Sb<br/>Antimonio</td>
+<td BGCOLOR="#8CF671" width="100" height="30">52<br align="left"/>Te<br/>Teluro</td>
+<td BGCOLOR="#D2AC0E" width="100" height="30">53<br align="left"/>I<br/>Yodo</td>
+<td BGCOLOR="#869F3E" width="100" height="30">54<br align="left"/>Xe<br/>Xenón</td>
+<td BGCOLOR="#A36D7F" width="100" height="30">55<br align="left"/>Cs<br/>Cesio</td>
+<td BGCOLOR="#F859F0" width="100" height="30">56<br align="left"/>Ba<br/>Bario</td>
+<td BGCOLOR="#DD467F" width="100" height="30">57<br align="left"/>La<br/>Lantano</td>
+<td BGCOLOR="#8C0F98" width="100" height="30">58<br align="left"/>Ce<br/>Cerio</td>
+<td BGCOLOR="#09A204" width="100" height="30">59<br align="left"/>Pr<br/>Praseodimio</td>
+<td BGCOLOR="#8BCDB7" width="100" height="30">60<br align="left"/>Nd<br/>Neodimio</td>
+</tr>
+<tr>
+<td BGCOLOR="gray" width="60" height="30">Pin 3</td>
+<td BGCOLOR="#E4C326" width="100" height="30">61<br align="left"/>Pm<br/>Prometio</td>
+<td BGCOLOR="#B6D922" width="100" height="30">62<br align="left"/>Sm<br/>Samario</td>
+<td BGCOLOR="#7AC12F" width="100" height="30">63<br align="left"/>Eu<br/>Europio</td>
+<td BGCOLOR="#A81B22" width="100" height="30">64<br align="left"/>Gd<br/>Gadolinio</td>
+<td BGCOLOR="#7B3AFC" width="100" height="30">65<br align="left"/>Tb<br/>Terbio</td>
+<td BGCOLOR="#F5D958" width="100" height="30">66<br align="left"/>Dy<br/>Disprosio</td>
+<td BGCOLOR="#0FAD41" width="100" height="30">67<br align="left"/>Ho<br/>Holmio</td>
+<td BGCOLOR="#3B42EF" width="100" height="30">68<br align="left"/>Er<br/>Erbio</td>
+<td BGCOLOR="#A1F599" width="100" height="30">69<br align="left"/>Tm<br/>Tulio</td>
+<td BGCOLOR="#D452B2" width="100" height="30">70<br align="left"/>Yb<br/>Iterbio</td>
+<td BGCOLOR="#3450D8" width="100" height="30">71<br align="left"/>Lu<br/>Lutecio</td>
+<td BGCOLOR="#F0CC5E" width="100" height="30">72<br align="left"/>Hf<br/>Hafnio</td>
+<td BGCOLOR="#998E4F" width="100" height="30">73<br align="left"/>Ta<br/>Tantalio</td>
+<td BGCOLOR="#274E8A" width="100" height="30">74<br align="left"/>W<br/>Wolframio</td>
+<td BGCOLOR="#F9CFD0" width="100" height="30">75<br align="left"/>Re<br/>Renio</td>
+<td BGCOLOR="#D75722" width="100" height="30">76<br align="left"/>Os<br/>Osmio</td>
+<td BGCOLOR="#A8FE7E" width="100" height="30">77<br align="left"/>Ir<br/>Iridio</td>
+<td BGCOLOR="#0176AC" width="100" height="30">78<br align="left"/>Pt<br/>Platino</td>
+<td BGCOLOR="#BF87C8" width="100" height="30">79<br align="left"/>Au<br/>Oro</td>
+<td BGCOLOR="#A5108D" width="100" height="30">80<br align="left"/>Hg<br/>Mercurio</td>
+</tr>
+<tr>
+<td BGCOLOR="gray" width="60" height="30">Pin 4</td>
+<td BGCOLOR="#A8C3F3" width="100" height="30">81<br align="left"/>Tl<br/>Talio</td>
+<td BGCOLOR="#355C95" width="100" height="30">82<br align="left"/>Pb<br/>Plomo</td>
+<td BGCOLOR="#A17FD5" width="100" height="30">83<br align="left"/>Bi<br/>Bismuto</td>
+<td BGCOLOR="#51A531" width="100" height="30">84<br align="left"/>Po<br/>Polonio</td>
+<td BGCOLOR="#72B516" width="100" height="30">85<br align="left"/>At<br/>Astato</td>
+<td BGCOLOR="#F26DDE" width="100" height="30">86<br align="left"/>Rn<br/>Radón</td>
+<td BGCOLOR="#DD9DF2" width="100" height="30">87<br align="left"/>Fr<br/>Francio</td>
+<td BGCOLOR="#ED6AAC" width="100" height="30">88<br align="left"/>Ra<br/>Radio</td>
+<td BGCOLOR="#CAF8BF" width="100" height="30">89<br align="left"/>Ac<br/>Actinio</td>
+<td BGCOLOR="#0FDC8E" width="100" height="30">90<br align="left"/>Th<br/>Torio</td>
+<td BGCOLOR="#7EBB48" width="100" height="30">91<br align="left"/>Pa<br/>Protactinio</td>
+<td BGCOLOR="#2DD293" width="100" height="30">92<br align="left"/>U<br/>Uranio</td>
+<td BGCOLOR="#67C066" width="100" height="30">93<br align="left"/>Np<br/>Neptunio</td>
+<td BGCOLOR="#CA17E1" width="100" height="30">94<br align="left"/>Pu<br/>Plutonio</td>
+<td BGCOLOR="#8634FE" width="100" height="30">95<br align="left"/>Am<br/>Americio</td>
+<td BGCOLOR="#BE4FFB" width="100" height="30">96<br align="left"/>Cm<br/>Curio</td>
+<td BGCOLOR="#B3FCDD" width="100" height="30">97<br align="left"/>Bk<br/>Berkelio</td>
+<td BGCOLOR="#705F1B" width="100" height="30">98<br align="left"/>Cf<br/>Californio</td>
+<td BGCOLOR="#E5B5A6" width="100" height="30">99<br align="left"/>Es<br/>Einstenio</td>
+<td BGCOLOR="#AB24C7" width="100" height="30">100<br align="left"/>Fm<br/>Fermio</td>
+</tr>
+</TABLE>>
+];
+}
