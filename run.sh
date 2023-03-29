@@ -1,2 +1,2 @@
 clear
-python Main.py
+python Test.py
