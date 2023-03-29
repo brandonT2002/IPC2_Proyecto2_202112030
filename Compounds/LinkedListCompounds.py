@@ -22,3 +22,10 @@ class LinkedListCompounds:
             print(f'{current.index}. {current.name}')
             current.elements.iterated()
             current = current.next
+
+    def getCompound(self,index):
+        current = self.first
+        while current:
+            if current.index == index:
+                return current
+            current = current.next

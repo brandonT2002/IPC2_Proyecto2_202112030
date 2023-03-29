@@ -5,7 +5,6 @@ class LinkedListElementsPin:
         self.first = None
         self.last = None
         self.index = 0
-        self.current : ElementNode = self.first
 
     # movimientos
     def moveRight(self) -> bool:
@@ -26,13 +25,14 @@ class LinkedListElementsPin:
     def insert(self,element):
         if self.first:
             self.last.next = ElementNode(self.index,element)
-            self.last.prev = self.last
+            self.last.next.prev = self.last
             self.last = self.last.next
             self.index += 1
             return
         self.first = ElementNode(self.index,element)
         self.last = self.first
         self.index += 1
+        self.current : ElementNode = self.first
 
     def iterated(self):
         current = self.first
@@ -50,3 +50,12 @@ class LinkedListElementsPin:
 
     def size(self):
         return self.index
+    
+    def __str__(self):
+        current = self.first
+        cadena = ''
+        while current:
+            cadena += f'{current.index} Elemento: {current.element.symbol}'
+            current = current.next
+            if current: cadena += '\n'
+        return cadena

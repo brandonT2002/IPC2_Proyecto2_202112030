@@ -9,7 +9,7 @@ class LinkedListMachines:
     def insert(self,name,numPins,numElements,machine):
         if self.first:
             self.last.next = MachineNode(self.index,name,numPins,numElements,machine)
-            self.last.prev = self.last
+            self.last.next.prev = self.last
             self.last = self.last.next
             self.index += 1
             return
@@ -24,6 +24,14 @@ class LinkedListMachines:
             print('Pines:',current.numPins,'Elementos:',current.numElements)
             current.machine.iterated()
             current = current.next
+
+    def getMachine(self,index):
+        current = self.first
+        while current:
+            if current.index == index:
+                return current
+            current = current.next
+        return None
 
     def getDot(self,index):
         current = self.first

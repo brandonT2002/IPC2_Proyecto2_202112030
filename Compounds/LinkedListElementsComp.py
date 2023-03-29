@@ -8,7 +8,7 @@ class LinkedListElementsComp:
     def insert(self,element):
         if self.first:
             self.last.next = ElementCompNode(element)
-            self.last.prev = self.last
+            self.last.next.prev = self.last
             self.last = self.last.next
             return
         self.first = ElementCompNode(element)

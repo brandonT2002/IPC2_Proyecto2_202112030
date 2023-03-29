@@ -5,6 +5,7 @@ from Machines.Machine import Machine
 from Machines.LinkedListElementsPin import LinkedListElementsPin
 from Compounds.LinkedListCompounds import LinkedListCompounds
 from Compounds.LinkedListElementsComp import LinkedListElementsComp
+from Algorithm.Algorithm import Algorithm
 
 llElements = LinkedListElements()
 llMachines = LinkedListMachines()
@@ -29,7 +30,7 @@ pin1.insert(llElements.validateStatement('N'))
 
 pin2 = LinkedListElementsPin()
 pin2.insert(llElements.validateStatement('C'))
-pin2.insert(llElements.validateStatement('B'))
+pin2.insert(llElements.validateStatement('Be'))
 pin2.insert(llElements.validateStatement('H'))
 
 machine.insert(pin1)
@@ -38,6 +39,7 @@ machine.insert(pin2)
 print('\nMaquinas')
 llMachines.insert('maquina1','2','6',machine)
 llMachines.iterated()
+print(machine.size(),machine.sizeElements())
 
 # agregar elementos al compuesto
 comp1 = LinkedListElementsComp()
@@ -51,3 +53,13 @@ comp1.insert('Li')
 print('\nCompuestos')
 llCompounds.insert('compuesto1',comp1)
 llCompounds.iterated()
+print('-----------------')
+
+# enviando una máquina al algoritmo para formar componentes
+maquina = llMachines.getMachine(0).machine
+compuesto = llCompounds.getCompound(0).elements
+
+# print(type(maquina))
+
+alg = Algorithm(maquina)
+alg.buildElement(compuesto)

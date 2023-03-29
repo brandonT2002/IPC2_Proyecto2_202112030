@@ -1,59 +1,60 @@
 from Machines.Machine import Machine
 from Machines.LinkedListElementsPin import LinkedListElementsPin
 from Compounds.LinkedListElementsComp import LinkedListElementsComp
-from Algorithm.Coordinate import Coordinate
+from Algorithm.Coordinate import Coord
 
 class Algorithm:
     def __init__(self,machine):
         self.machine : Machine = machine
 
     def buildElement(self,compound : LinkedListElementsComp) -> bool:
-        found : Coordinate
-        for element in compound:
-            found = self.getCoordinate(element)
-            if found != None:
-                self.movePins()
+        found : Coord
+        element = compound.first
+        while element:
+            print(element.element)
+            found = self.getCoordinate(element.element)
+            if found:
+                self.movePins(found.pin,found.element)
             else:
+                print(element.element,'retorna falso')
                 return False
+            element = element.next
         #resetear pines
         return True
 
     def movePins(self,pinY,elmX):
         right : bool
         stop : bool
-        for pin in self.machine:
-            stop = pin.getCurrent().index == elmX
+        pin = self.machine.first
+        while pin:
+            stop = pin.listElements.getCurrent().index == elmX
             if not stop:
-                right = pin.getCurrent().index < elmX
+                right = pin.listElements.getCurrent().index < elmX
                 while True:
                     if right:
-                        pin.moveRight()
+                        pin.listElements.moveRight()
                     else:
-                        pin.moveLeft()
-                    if pin.getCurrent().index == elmX:
+                        pin.listElements.moveLeft()
+                    if pin.listElements.getCurrent().index == elmX:
                         break
                 if pin.index == pinY:
-                    #fusionar
+                    print('fusiona:','pin =',pinY,'elemento =',elmX)
                     pass
                 else:
                     if right:
-                        pin.moveRight()
+                        pin.listElements.moveRight()
                     else:
-                        pin.moveLeft()
+                        pin.listElements.moveLeft()
+            else:
+                if pin.index == pinY:
+                    print('fusiona:','pin =',pinY,'elemento =',elmX)
+            pin = pin.next
 
-    def getCoordinate(self,element) -> Coordinate:
-        index : int
-        for pin in self.machine:
-            index = self.searchElement(element)
-            if index != -1:
-                return Coordinate(pin.index,index)
-        return None
-
-    def searchElement(self,element):
+    def getCoordinate(self,element):
         for j in range(self.machine.sizeElements()):
             for i in range(self.machine.size()):
                 pin = self.machine.getPin(i)
-                element = pin.listElements.get(j)
-                if element.element.name == element:
-                    return element.index
-        return -1
+                elm = pin.listElements.get(j)
+                if elm.element.symbol == element:
+                    return Coord(i,j)
+        return None

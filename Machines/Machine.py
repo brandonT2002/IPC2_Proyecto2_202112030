@@ -11,7 +11,7 @@ class Machine:
     def insert(self,listElements):
         if self.first:
             self.last.next = PinNode(self.index,listElements)
-            self.last.prev = self.last
+            self.last.next.prev = self.last
             self.last = self.last.next
             self.index += 1
             return
@@ -37,7 +37,7 @@ class Machine:
         return self.index
     
     def sizeElements(self):
-        return self.first.index
+        return self.first.listElements.index
     
     #Graphviz
     def getDot(self):
