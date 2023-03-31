@@ -48,6 +48,10 @@ class Algorithm:
                         pin.listElements.moveLeft()
                 elif pin.listElements.getCurrent().index == position.elmX:
                     pin.listElements.moved = True
+            print('=====================')
+            print('Máquina')
+            print(self.machine)
+            print()
             position = self.positions.get(0)
             pin = self.machine.getPin(position.pinY)
             if pin.listElements.getCurrent().index == position.elmX:
@@ -57,10 +61,6 @@ class Algorithm:
                 print('Máquina')
                 print(self.machine)
                 print()
-            print('=====================')
-            print('Máquina')
-            print(self.machine)
-            print()
             self.machine.reset()
 
     def getCoordinate(self,element):
