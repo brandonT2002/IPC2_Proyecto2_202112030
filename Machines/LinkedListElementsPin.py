@@ -5,22 +5,29 @@ class LinkedListElementsPin:
         self.first = None
         self.last = None
         self.index = 0
+        self.current = None
+        self.moved = False
 
     # movimientos
     def moveRight(self) -> bool:
         if self.current.next:
             self.current = self.current.next
+            self.moved = True
             return True
         return False
 
     def moveLeft(self) -> bool:
         if self.current.prev:
             self.current = self.current.prev
+            self.moved = True
             return True
         return False
 
     def getCurrent(self) -> ElementNode:
         return self.current
+
+    def resetMove(self):
+        self.moved = False
 
     def insert(self,element):
         if self.first:
@@ -32,6 +39,8 @@ class LinkedListElementsPin:
         self.first = ElementNode(self.index,element)
         self.last = self.first
         self.index += 1
+
+    def startPin(self):
         self.current : ElementNode = self.first
 
     def iterated(self):
@@ -55,7 +64,6 @@ class LinkedListElementsPin:
         current = self.first
         cadena = ''
         while current:
-            cadena += f'{current.index} Elemento: {current.element.symbol}'
+            cadena += '{:<4}'.format(current.element.symbol)
             current = current.next
-            if current: cadena += '\n'
         return cadena

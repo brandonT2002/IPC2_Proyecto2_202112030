@@ -6,3 +6,6 @@ class Position:
         self.elmX = elmX
         self.next = None
         self.prev = None
+
+    def __str__(self):
+        return '* {}\n-fusiona: pin = {:<4} elemento = {:<4}'.format(self.element,self.pinY,self.elmX)

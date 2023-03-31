@@ -14,36 +14,54 @@ class Algorithm:
         while element:
             found = self.getCoordinate(element.element)
             if found:
-                self.movePins(element.element,found.pin,found.element)
+                self.positions.insert(element.element,found.pin,found.element)
             else:
-                print(element.element,'retorna falso')
                 return False
             element = element.next
         #resetear pines
-        self.positions.iterated()
+        #self.positions.iterated()
+        # graficar inicial
+        self.movePins(compound.size())
         return True
 
-    def movePins(self,element,pinY,elmX):
-        right : bool
-        stop : bool
-        pin = self.machine.first
-        while pin:
-            stop = pin.listElements.getCurrent().index == elmX
-            if not stop:
-                right = pin.listElements.getCurrent().index < elmX
-                while True:
-                    if right:
+    def movePins(self,compoundSize):
+        print('Máquina')
+        print(self.machine)
+        print()
+        for i in range(self.positions.pinsID.size()):
+            position = self.positions.pinsID.get(i)
+            pin = self.machine.getPin(position.pinY)
+            pin.listElements.startPin()
+        print('INICIO DE LA FUSIÓN')
+        print('Máquina')
+        print(self.machine)
+        print()
+        while not self.positions.isEmpty():
+            for i in range(self.positions.size()):
+                position = self.positions.get(i)
+                pin = self.machine.getPin(position.pinY)
+                if pin.listElements.getCurrent().index < position.elmX:
+                    if not pin.listElements.moved:
                         pin.listElements.moveRight()
-                    else:
+                elif pin.listElements.getCurrent().index > position.elmX:
+                    if not pin.listElements.moved:
                         pin.listElements.moveLeft()
-                    if pin.listElements.getCurrent().index == elmX:
-                        break
-                if pin.index == pinY:
-                    self.positions.insert(element,pinY,elmX)
-            else:
-                if pin.index == pinY:
-                    self.positions.insert(element,pinY,elmX)
-            pin = pin.next
+                elif pin.listElements.getCurrent().index == position.elmX:
+                    pin.listElements.moved = True
+            position = self.positions.get(0)
+            pin = self.machine.getPin(position.pinY)
+            if pin.listElements.getCurrent().index == position.elmX:
+                first = self.positions.pop()
+                print('=====================')
+                print('FUSIONA',first.element)
+                print('Máquina')
+                print(self.machine)
+                print()
+            print('=====================')
+            print('Máquina')
+            print(self.machine)
+            print()
+            self.machine.reset()
 
     def getCoordinate(self,element):
         for j in range(self.machine.sizeElements()):

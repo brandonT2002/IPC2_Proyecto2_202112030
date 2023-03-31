@@ -22,8 +22,7 @@ class Machine:
     def iterated(self):
         current = self.first
         while current:
-            print('Pin:',current.index)
-            current.listElements.iterated()
+            print(current)
             current = current.next
 
     def getPin(self,index):
@@ -32,13 +31,20 @@ class Machine:
             if current.index == index:
                 return current
             current = current.next
+        return None
 
     def size(self):
         return self.index
     
     def sizeElements(self):
         return self.first.listElements.index
-    
+
+    def reset(self):
+        current = self.first
+        while current:
+            current.listElements.resetMove()
+            current = current.next
+
     #Graphviz
     def getDot(self):
         dot = 'digraph maquina {\nnode1 [shape=none, margin=0, label=\n<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">\n'
@@ -65,3 +71,12 @@ class Machine:
 
         os.system('dot -Tjpg Img/imgMachine.txt -o Img/imgMachine.jpg')
         webbrowser.open('Img\imgMachine.jpg')
+
+    def __str__(self):
+        current = self.first
+        stringG = ''
+        while current:
+            stringG += f'{current}'
+            current = current.next
+            if current: stringG += '\n'
+        return stringG
