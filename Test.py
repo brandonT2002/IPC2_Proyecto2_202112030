@@ -61,5 +61,6 @@ compuesto = llCompounds.getCompound(0).elements
 
 # print(type(maquina))
 
+# llMachines.getDot(0)
 alg = Algorithm(maquina)
 alg.buildElement(compuesto)
