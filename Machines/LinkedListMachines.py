@@ -37,6 +37,6 @@ class LinkedListMachines:
         current = self.first
         while current:
             if current.index == index:
-                current.machine.getDot()
+                current.machine.generatedDot()
                 return
             current = current.next

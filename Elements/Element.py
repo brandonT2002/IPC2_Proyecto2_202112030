@@ -10,6 +10,11 @@ class Element:
             if self.color != "#050505":
                 break;
 
+    def clone(self):
+        newElement = Element(self.atomcNum,self.symbol,self.name)
+        newElement.color = self.color
+        return newElement
+
     def __Color(self):
         color = ['#' + ''.join([random.choice('0123456789ABCDEF') for j in range(6)])]
         color = str(color)

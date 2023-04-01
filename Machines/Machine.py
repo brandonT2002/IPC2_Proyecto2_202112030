@@ -45,8 +45,26 @@ class Machine:
             current.listElements.resetMove()
             current = current.next
 
+    def clone(self):
+        newMachine = Machine()
+        newMachine.index = self.index
+        current = self.first
+        newMachine.index = 0
+        while current:
+            if newMachine.first:
+                newMachine.last.next = PinNode(newMachine.index,current.listElements.clone())
+                newMachine.last.next.prev = newMachine.last
+                newMachine.last = newMachine.last.next
+                newMachine.index += 1
+            else:
+                newMachine.first = PinNode(newMachine.index,current.listElements.clone())
+                newMachine.last = newMachine.first
+                newMachine.index += 1
+            current = current.next
+        return newMachine
+
     #Graphviz
-    def getDot(self):
+    def generatedDot(self):
         dot = 'digraph maquina {\nnode1 [shape=none, margin=0, label=\n<<TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5">\n'
 
         current = self.first
@@ -71,6 +89,26 @@ class Machine:
 
         os.system('dot -Tjpg Img/imgMachine.txt -o Img/imgMachine.jpg')
         webbrowser.open('Img\imgMachine.jpg')
+
+    def getStep(self,stepN,pinY,elmX,colors):
+        dot = f'node{stepN} [shape=none, margin=0, label=\n<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">\n'
+        title = f'Segundo {stepN}' if stepN > 0 else 'Estado Inicial'
+        dot += f'<tr>\n<td border="0" colspan="{self.sizeElements() + 1}" align="left">{title}</td>\n</tr>'
+        current = self.first
+        while current:
+            dot += '<tr>\n'
+            color = colors.get(current.index if current.index < colors.size() else current.index % colors.size())
+            dot += f'<td BGCOLOR="{color}" width="60" height="30">Pin {current.index + 1}</td>\n'
+            if current.index == pinY:
+                dot += f'{current.listElements.getDot(color,elmX)}'
+            else:
+                dot += f'{current.listElements.getDot(color)}'
+            dot += '</tr>\n'
+            current = current.next
+
+        dot += '</TABLE>>\n'
+        dot += '];\n'
+        return dot
 
     def __str__(self):
         current = self.first

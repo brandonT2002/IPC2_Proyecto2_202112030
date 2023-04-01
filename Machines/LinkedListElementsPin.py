@@ -1,5 +1,5 @@
 from Machines.ElementPinNode import ElementNode
-
+from Elements.Element import Element
 class LinkedListElementsPin:
     def __init__(self):
         self.first = None
@@ -29,7 +29,7 @@ class LinkedListElementsPin:
     def resetMove(self):
         self.moved = False
 
-    def insert(self,element):
+    def insert(self,element : Element):
         if self.first:
             self.last.next = ElementNode(self.index,element)
             self.last.next.prev = self.last
@@ -56,6 +56,33 @@ class LinkedListElementsPin:
                 return current
             current = current.next
         return None
+
+    def clone(self):
+        newList = LinkedListElementsPin()
+        current = self.first
+        while current:
+            newList.insert(current.element.clone())
+            current = current.next
+        newList.current = self.current
+        return newList
+
+    def getDot(self,color,elmX = -1):
+        current = self.first
+        dot = ''
+        while current:
+            color_ = color
+            border = ''
+            if self.current:
+                if current.index > self.current.index:
+                    color_ = 'white'
+                elif elmX != -1 and current.index == elmX:
+                    color_ = 'gray'
+                    border = ' border="3"'
+            else:
+                color_ = 'white'
+            dot += f'<td BGCOLOR="{color_}" width="100" height="30"{border}>{current.element.symbol}</td>\n'
+            current = current.next
+        return dot
 
     def size(self):
         return self.index

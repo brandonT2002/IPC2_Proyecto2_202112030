@@ -1,12 +1,13 @@
 from Machines.Machine import Machine
 from Machines.Positions import Positions
+from Machines.Steps import Steps
 from Compounds.LinkedListElementsComp import LinkedListElementsComp
 from Algorithm.Coordinate import Coord
-
 class Algorithm:
     def __init__(self,machine):
         self.machine : Machine = machine
         self.positions = Positions()
+        self.steps = Steps()
 
     def buildElement(self,compound : LinkedListElementsComp) -> bool:
         found : Coord
@@ -18,16 +19,16 @@ class Algorithm:
             else:
                 return False
             element = element.next
-        #resetear pines
-        #self.positions.iterated()
-        # graficar inicial
         self.movePins(compound.size())
+        print(self.steps.getDot())
+        #resetear pines
         return True
 
     def movePins(self,compoundSize):
-        print('Máquina')
-        print(self.machine)
-        print()
+        # print('Máquina')
+        # print(self.machine)
+        # print()
+        self.steps.insert(self.machine)
         for i in range(self.positions.pinsID.size()):
             position = self.positions.pinsID.get(i)
             pin = self.machine.getPin(position.pinY)
@@ -36,6 +37,7 @@ class Algorithm:
         print('Máquina')
         print(self.machine)
         print()
+        self.steps.insert(self.machine)
         while not self.positions.isEmpty():
             for i in range(self.positions.size()):
                 position = self.positions.get(i)
@@ -54,13 +56,15 @@ class Algorithm:
             print()
             position = self.positions.get(0)
             pin = self.machine.getPin(position.pinY)
+            self.steps.insert(self.machine)
             if pin.listElements.getCurrent().index == position.elmX:
                 first = self.positions.pop()
                 print('=====================')
-                print('FUSIONA',first.element)
+                print('FUSIONA',first.element,f'({first.pinY}, {first.elmX})')
                 print('Máquina')
                 print(self.machine)
                 print()
+                self.steps.insert(self.machine,first.pinY,first.elmX)
             self.machine.reset()
 
     def getCoordinate(self,element):
@@ -89,8 +93,7 @@ class Algorithm:
         dot += '];\n'
 
     def getDot(self):
-        dot = 'digraph pasos {\nrankdir = TB;\n'
-        dot += '}'
+        pass
 
 
 
