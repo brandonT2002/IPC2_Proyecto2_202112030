@@ -28,7 +28,6 @@ class Steps:
                 self.last = self.last.next
                 self.index += 1
             else:
-                self.last.machine = machine.clone()
                 self.last.pinY = pinY
                 self.last.elmX = elmX
             return
@@ -44,7 +43,8 @@ class Steps:
                 if lastMachine.getPin(i).listElements.getCurrent():
                     if lastMachine.getPin(i).listElements.getCurrent().index != machine.getPin(i).listElements.getCurrent().index:
                         return False
-            if pinY != -1 and elmX != -1:
+            lastPrevMachine = self.last.prev.machine
+            if pinY != -1 and elmX != -1 and lastMachine.getPin(pinY).listElements.getCurrent().index == elmX and lastPrevMachine.getPin(pinY).listElements.getCurrent().index == elmX:
                 return True
         return False
 

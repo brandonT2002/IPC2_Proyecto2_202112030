@@ -20,7 +20,8 @@ class Algorithm:
                 return False
             element = element.next
         self.movePins(compound.size())
-        print(self.steps.getDot())
+        with open('Dot/dotMachine.dot','w',encoding='utf-8') as dot:
+            dot.write(self.steps.getDot())
         #resetear pines
         return True
 
@@ -42,13 +43,11 @@ class Algorithm:
             for i in range(self.positions.size()):
                 position = self.positions.get(i)
                 pin = self.machine.getPin(position.pinY)
-                if pin.listElements.getCurrent().index < position.elmX:
-                    if not pin.listElements.moved:
-                        pin.listElements.moveRight()
-                elif pin.listElements.getCurrent().index > position.elmX:
-                    if not pin.listElements.moved:
-                        pin.listElements.moveLeft()
-                elif pin.listElements.getCurrent().index == position.elmX:
+                if pin.listElements.getCurrent().index < position.elmX and not pin.listElements.moved:
+                    pin.listElements.moveRight()
+                elif pin.listElements.getCurrent().index > position.elmX and not pin.listElements.moved:
+                    pin.listElements.moveLeft()
+                elif pin.listElements.getCurrent().index == position.elmX and not pin.listElements.moved:
                     pin.listElements.moved = True
             print('=====================')
             print('Máquina')
