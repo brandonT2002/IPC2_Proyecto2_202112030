@@ -41,8 +41,9 @@ class Steps:
         if self.index > 1:
             lastMachine = self.last.machine
             for i in range(machine.size()):
-                if lastMachine.getPin(i).listElements.getCurrent().index != machine.getPin(i).listElements.getCurrent().index:
-                    return False
+                if lastMachine.getPin(i).listElements.getCurrent():
+                    if lastMachine.getPin(i).listElements.getCurrent().index != machine.getPin(i).listElements.getCurrent().index:
+                        return False
             if pinY != -1 and elmX != -1:
                 return True
         return False

@@ -46,7 +46,7 @@ pin3.insert(llElements.validateStatement('Na'))
 
 machine.insert(pin1)
 machine.insert(pin2)
-machine.insert(pin3)
+#machine.insert(pin3)
 
 print('\nMaquinas')
 llMachines.insert('maquina1','3','9',machine)
@@ -55,11 +55,11 @@ print(machine.size(),machine.sizeElements())
 
 # agregar elementos al compuesto
 comp1 = LinkedListElementsComp()
-comp1.insert('Li')
-comp1.insert('Au')
+comp1.insert('H')
+comp1.insert('H')
 comp1.insert('Be')
-comp1.insert('He')
-comp1.insert('Be')
+comp1.insert('N')
+comp1.insert('C')
 comp1.insert('Li')
 
 print('\nCompuestos')
