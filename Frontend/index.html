@@ -16,8 +16,7 @@
         <div class="container">
             <div class="bar">
                 <a href="#" class="logo">
-                    <h1 class="logo__name no-margin center-text">LAF <span class="logo__bold
-                        ">USAC</span></h1>
+                    <h1 class="logo__name no-margin center-text">LAF <span class="logo__bold">USAC</span></h1>
                 </a>
                 <nav class="navigation">
                     <button type="button" class="button">Cargar Archivo</button>
@@ -36,5 +35,16 @@
             </div>
         </div>
     </header>
+    <div class="container containerMachinesCombo">
+        <select name="machine" id="selectMachine" class="selectMachine">
+            <option selected="selected" disabled="">Seleccione una Máquina</option>
+        </select>
+    </div>
+    <div id="machine" class="container machine"></div>
+    <!-- scripts -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+    <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+    <script src="js/machine.js"></script>
 </body>
 </html>
