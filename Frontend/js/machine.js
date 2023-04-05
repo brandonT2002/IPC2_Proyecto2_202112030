@@ -34,7 +34,7 @@ dot = d3.select('#machine').graphviz().scale(2.3).height(document.getElementById
 				fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
 			else
 				fileName = e.target.value.split( '\\' ).pop();
-
+                console.log(e.target.value)
 			if( fileName )
 				label.querySelector( 'span' ).innerHTML = fileName;
 			else
