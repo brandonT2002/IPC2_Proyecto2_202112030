@@ -1,7 +1,6 @@
-from Read.Read import Read
+from Read import Read
 from Elements.LinkedListElements import LinkedListElements
 from Machines.LinkedListMachines import LinkedListMachines
-from Machines.Machine import Machine
 from Compounds.LinkedListCompounds import LinkedListCompounds
 
 llElements = LinkedListElements()
@@ -9,7 +8,7 @@ llMachines = LinkedListMachines()
 llCompounds = LinkedListCompounds()
 
 read = Read()
-read.readFile('entrada2.xml')
+read.readFile('Backend/entrada2.xml')
 print('\nElementos')
 llElements : LinkedListElements = read.getElements(llElements)
 llElements.iterated()

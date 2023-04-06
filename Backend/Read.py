@@ -50,7 +50,7 @@ class Read:
         return llCompounds
 
 # read = Read()
-# read.readFile('entrada.xml')
+# read.readFile('./Backend/entrada.xml')
 # read.getElements()
 # read.getMachines()
 # read.getCompounds()

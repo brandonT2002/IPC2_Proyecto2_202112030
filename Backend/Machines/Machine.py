@@ -1,6 +1,4 @@
 from Machines.PinNode import PinNode
-import os
-import webbrowser
 
 class Machine:
     def __init__(self):
@@ -84,11 +82,13 @@ class Machine:
         dot += '}'
         #print(dot)
 
-        with open('Img/imgMachine.txt','w',encoding='utf-8') as report:
-            report.write(dot)
+        # with open('Backend/Img/imgMachine.txt','w',encoding='utf-8') as report:
+        #     report.write(dot)
 
-        os.system('dot -Tjpg Img/imgMachine.txt -o Img/imgMachine.jpg')
-        webbrowser.open('Img\imgMachine.jpg')
+        # os.system('dot -Tjpg Backend/Img/imgMachine.txt -o Backend/Img/imgMachine.jpg')
+        # webbrowser.open('Backend\Img\imgMachine.jpg')
+
+        return dot
 
     def getStep(self,stepN,pinY,elmX,colors):
         dot = f'node{stepN} [shape=none, margin=0, label=\n<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">\n'

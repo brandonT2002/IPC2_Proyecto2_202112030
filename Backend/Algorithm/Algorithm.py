@@ -20,7 +20,7 @@ class Algorithm:
                 return False
             element = element.next
         self.movePins(compound.size())
-        with open('Dot/dotMachine.dot','w',encoding='utf-8') as dot:
+        with open('./Backend/Dot/dotMachine.dot','w',encoding='utf-8') as dot:
             dot.write(self.steps.getDot())
         #resetear pines
         return True
