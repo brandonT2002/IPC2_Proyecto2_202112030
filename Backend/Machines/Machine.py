@@ -68,7 +68,7 @@ class Machine:
         current = self.first
         while current:
             dot += '<tr>\n'
-            dot += f'<td BGCOLOR="gray" width="60" height="30">Pin {current.index}</td>\n'
+            dot += f'<td BGCOLOR="gray" width="60" height="30">Pin {current.index + 1}</td>\n'
 
             currentE = current.listElements.first
             while currentE:
@@ -80,7 +80,7 @@ class Machine:
         dot += '</TABLE>>\n'
         dot += '];\n'
         dot += '}'
-        #print(dot)
+        # print(dot)
 
         # with open('Backend/Img/imgMachine.txt','w',encoding='utf-8') as report:
         #     report.write(dot)

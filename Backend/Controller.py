@@ -28,5 +28,8 @@ class Controller:
 
         return jsonify({"msg":"Archivo cargado exitosamente"}),200
 
-    def getImage(self):
-        pass
+    def getDotM(self,index):
+        dot = self.llMachines.getDot(index)
+        if dot:
+            return jsonify({"msg":dot}),200
+        return jsonify({"msg":"No hay datos cargados"})

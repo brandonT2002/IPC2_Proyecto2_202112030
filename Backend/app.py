@@ -17,5 +17,12 @@ def upload():
         data['path']
     )
 
+@app.route('/dotMachine',methods=['POST'])
+def getDotM():
+    data = request.json
+    return ctrl.getDotM(
+        data['dot']
+    )
+
 if __name__ == '__main__':
     app.run(debug = True, port = 4000)
