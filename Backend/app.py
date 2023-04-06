@@ -8,11 +8,14 @@ ctrl = Controller()
 
 @app.route('/')
 def ping():
-    return jsonify({'message':'API Biblioteca'})
+    return jsonify({'message':'API IPC2-Proyecto2'})
 
 @app.route('/uploadFile',methods=['POST'])
-def upload(path):
-    ctrl.upload(path)
+def upload():
+    data = request.json
+    return ctrl.upload(
+        data['path']
+    )
 
 if __name__ == '__main__':
     app.run(debug = True, port = 4000)

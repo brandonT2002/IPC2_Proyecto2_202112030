@@ -1,8 +1,8 @@
 from Read import Read
-from Backend.Elements.LinkedListElements import LinkedListElements
-from Backend.Machines.LinkedListMachines import LinkedListMachines
-from Backend.Compounds.LinkedListCompounds import LinkedListCompounds
-import json
+from Elements.LinkedListElements import LinkedListElements
+from Machines.LinkedListMachines import LinkedListMachines
+from Compounds.LinkedListCompounds import LinkedListCompounds
+from flask import jsonify
 
 class Controller:
     def __init__(self) -> None:
@@ -26,4 +26,7 @@ class Controller:
         self.llCompounds : LinkedListCompounds = read.getCompounds(self.llCompounds)
         self.llCompounds.iterated()
 
-        return json({"msg":"Archivo cargado exitosamente"}),200
+        return jsonify({"msg":"Archivo cargado exitosamente"}),200
+
+    def getImage(self):
+        pass
