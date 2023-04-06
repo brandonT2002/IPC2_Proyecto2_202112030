@@ -22,6 +22,17 @@ class Controller:
 
         return jsonify({"msg":"Archivo cargado exitosamente"}),200
 
+    def getMachinesJSON(self):
+        current = self.llMachines.first
+        json = []
+        while current:
+            json.append({"index":current.index,"name":current.name})
+            current = current.next
+        return json
+
+    def getMachines(self):
+        return jsonify(self.getMachinesJSON()),200
+
     def getDotM(self,index):
         dot = self.llMachines.getDot(index)
         if dot:
@@ -44,8 +55,8 @@ class Controller:
         element = self.llElements.existElement(atomicNum,symbol,name)
         if not element:
             self.llElements.insert(Element(atomicNum,symbol,name))
-            return jsonify({"msg":"Elemento registrado"})
-        return jsonify({"msg":"El elemento ya existe"})
+            return jsonify({"msg":"Elemento registrado"}),200
+        return jsonify({"msg":"El elemento ya existe"}),200
 
     def getDotStep(self,machine,compound):
         machine = self.llMachines.getMachine(machine).machine
@@ -53,4 +64,4 @@ class Controller:
         alg = Algorithm(machine)
         if alg.buildCompound(compound):
             return jsonify({"dot":alg.steps.getDot()}),200
-        return jsonify({"dot":"No se puede construir"})
+        return jsonify({"dot":"No se puede construir"}),200

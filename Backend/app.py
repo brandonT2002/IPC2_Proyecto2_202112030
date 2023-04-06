@@ -17,7 +17,11 @@ def upload():
         data['path']
     )
 
-@app.route('/dotMachine',methods=['POST'])
+@app.route('/machine',methods=['GET'])
+def getMachines():
+    return ctrl.getMachines()
+
+@app.route('/machine',methods=['POST'])
 def getDotM():
     data = request.json
     return ctrl.getDotM(
