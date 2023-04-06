@@ -23,6 +23,12 @@ class Machine:
             print(current)
             current = current.next
 
+    def reset(self):
+        current = self.first
+        while current:
+            current.listElements.current = None
+            current = current.next
+
     def getPin(self,index):
         current = self.first
         while current:

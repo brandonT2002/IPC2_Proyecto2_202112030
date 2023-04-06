@@ -37,5 +37,13 @@ def newElement():
         data['name']
     )
 
+@app.route('/compounds',methods=['POST'])
+def getDotStep():
+    data = request.json
+    return ctrl.getDotStep(
+        data['machine'],
+        data['compound']
+    )
+
 if __name__ == '__main__':
     app.run(debug = True, port = 4000)

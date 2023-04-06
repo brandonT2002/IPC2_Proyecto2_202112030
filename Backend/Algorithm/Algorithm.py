@@ -9,7 +9,7 @@ class Algorithm:
         self.positions = Positions()
         self.steps = Steps()
 
-    def buildElement(self,compound : LinkedListElementsComp) -> bool:
+    def buildCompound(self,compound : LinkedListElementsComp) -> bool:
         found : Coord
         element = compound.first
         while element:
@@ -20,9 +20,10 @@ class Algorithm:
                 return False
             element = element.next
         self.movePins(compound.size())
-        with open('./Backend/Dot/dotMachine.dot','w',encoding='utf-8') as dot:
-            dot.write(self.steps.getDot())
+        # with open('./Backend/Dot/dotMachine.dot','w',encoding='utf-8') as dot:
+        #     dot.write(self.steps.getDot())
         #resetear pines
+        self.machine.reset()
         return True
 
     def movePins(self,compoundSize):

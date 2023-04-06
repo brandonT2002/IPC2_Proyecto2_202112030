@@ -3,6 +3,7 @@ from Elements.LinkedListElements import LinkedListElements
 from Machines.LinkedListMachines import LinkedListMachines
 from Compounds.LinkedListCompounds import LinkedListCompounds
 from Elements.Element import Element
+from Algorithm.Algorithm import Algorithm
 from flask import jsonify
 
 class Controller:
@@ -45,3 +46,11 @@ class Controller:
             self.llElements.insert(Element(atomicNum,symbol,name))
             return jsonify({"msg":"Elemento registrado"})
         return jsonify({"msg":"El elemento ya existe"})
+
+    def getDotStep(self,machine,compound):
+        machine = self.llMachines.getMachine(machine).machine
+        compound = self.llCompounds.getCompound(compound).elements
+        alg = Algorithm(machine)
+        if alg.buildCompound(compound):
+            return jsonify({"dot":alg.steps.getDot()}),200
+        return jsonify({"dot":"No se puede construir"})
