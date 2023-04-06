@@ -2,7 +2,7 @@ import random
 
 class Element:
     def __init__(self,atomicNum,symbol,name):
-        self.atomcNum = atomicNum
+        self.atomicNum = atomicNum
         self.symbol = symbol
         self.name = name
         while True:
@@ -11,7 +11,7 @@ class Element:
                 break;
 
     def clone(self):
-        newElement = Element(self.atomcNum,self.symbol,self.name)
+        newElement = Element(self.atomicNum,self.symbol,self.name)
         newElement.color = self.color
         return newElement
 

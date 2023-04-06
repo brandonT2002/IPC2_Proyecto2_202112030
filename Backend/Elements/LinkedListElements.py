@@ -20,7 +20,7 @@ class LinkedListElements:
     def existElement(self,atomicNum,symbol,name):
         current = self.first
         while current:
-            if current.element.atomcNum == atomicNum and current.element.symbol == symbol and current.element.name == name:
+            if int(current.element.atomicNum) == int(atomicNum) or current.element.symbol == symbol or current.element.name == name:
                 return True
             current = current.next
         return False
@@ -32,8 +32,8 @@ class LinkedListElements:
             current2 = self.first
             while current2:
 
-                if int(current2.element.atomcNum) > int(current2.next.element.atomcNum):
-                    current2.element.atomcNum,current2.next.element.atomcNum = current2.next.element.atomcNum,current2.element.atomcNum
+                if int(current2.element.atomicNum) > int(current2.next.element.atomicNum):
+                    current2.element.atomicNum,current2.next.element.atomicNum = current2.next.element.atomicNum,current2.element.atomicNum
 
                 current2 = current2.next
                 if not current2.next:
@@ -53,5 +53,5 @@ class LinkedListElements:
     def iterated(self):
         current = self.first
         while current:
-            print(f'No. Atómico {current.element.atomcNum}',f'Simbolo: {current.element.symbol}',f'Nombre: {current.element.name}')
+            print(f'No. Atómico {current.element.atomicNum}',f'Simbolo: {current.element.symbol}',f'Nombre: {current.element.name}')
             current = current.next

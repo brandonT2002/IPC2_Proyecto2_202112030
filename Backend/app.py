@@ -28,5 +28,14 @@ def getDotM():
 def getElements():
     return ctrl.getElements()
 
+@app.route('/newElement',methods=['POST'])
+def newElement():
+    data = request.json
+    return ctrl.newElement(
+        data['atomicNum'],
+        data['symbol'],
+        data['name']
+    )
+
 if __name__ == '__main__':
     app.run(debug = True, port = 4000)

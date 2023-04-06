@@ -72,7 +72,7 @@ class Machine:
 
             currentE = current.listElements.first
             while currentE:
-                dot += f'<td BGCOLOR="{currentE.element.color}" width="100" height="30">{currentE.element.atomcNum}<br align="left"/>{currentE.element.symbol}<br/>{currentE.element.name}</td>\n'
+                dot += f'<td BGCOLOR="{currentE.element.color}" width="100" height="30">{currentE.element.atomicNum}<br align="left"/>{currentE.element.symbol}<br/>{currentE.element.name}</td>\n'
                 currentE = currentE.next
             dot += '</tr>\n'
             current = current.next

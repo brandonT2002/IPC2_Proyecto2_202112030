@@ -2,6 +2,7 @@ from Read import Read
 from Elements.LinkedListElements import LinkedListElements
 from Machines.LinkedListMachines import LinkedListMachines
 from Compounds.LinkedListCompounds import LinkedListCompounds
+from Elements.Element import Element
 from flask import jsonify
 
 class Controller:
@@ -37,3 +38,10 @@ class Controller:
     def getElements(self):
         self.llElements.sort()
         return jsonify(self.getElementsJSON()),200
+
+    def newElement(self,atomicNum,symbol,name):
+        element = self.llElements.existElement(atomicNum,symbol,name)
+        if not element:
+            self.llElements.insert(Element(atomicNum,symbol,name))
+            return jsonify({"msg":"Elemento registrado"})
+        return jsonify({"msg":"El elemento ya existe"})
