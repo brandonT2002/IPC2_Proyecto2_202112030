@@ -25,6 +25,24 @@ class LinkedListElements:
             current = current.next
         return False
 
+    def sort(self):
+        current1 = self.first
+        while current1:
+
+            current2 = self.first
+            while current2:
+
+                if int(current2.element.atomcNum) > int(current2.next.element.atomcNum):
+                    current2.element.atomcNum,current2.next.element.atomcNum = current2.next.element.atomcNum,current2.element.atomcNum
+
+                current2 = current2.next
+                if not current2.next:
+                    break
+
+            current1 = current1.next
+            if not current1.next:
+                break
+
     def validateStatement(self,element):
         current = self.first
         while current:
