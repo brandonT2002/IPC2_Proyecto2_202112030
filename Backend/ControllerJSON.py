@@ -1,11 +1,10 @@
-import csv
 from Read import Read
 from Elements.LinkedListElements import LinkedListElements
 from Machines.LinkedListMachines import LinkedListMachines
 from Compounds.LinkedListCompounds import LinkedListCompounds
 from Elements.Element import Element
 from Algorithm.Algorithm import Algorithm
-from flask import Response
+from flask import jsonify
 
 class Controller:
     def __init__(self) -> None:
@@ -21,59 +20,59 @@ class Controller:
         self.llMachines : LinkedListMachines = read.getMachines(self.llElements,self.llMachines)
         self.llCompounds : LinkedListCompounds = read.getCompounds(self.llCompounds)
 
-        return 'Archivo cargado exitosamente',200
+        return jsonify({"msg":"Archivo cargado exitosamente"}),200
 
-    def getMachinesCSV(self):
+    def getMachinesJSON(self):
         current = self.llMachines.first
-        string_csv = ''
+        json = []
         while current:
-            string_csv += f'{current.index},{current.name}'
+            json.append({"index":current.index,"name":current.name})
             current = current.next
-            if current: string_csv += '\n'
-        return string_csv
+        return json
 
     def getMachines(self):
-        return Response(self.getMachinesCSV(),mimetype='text/csv'),200
+        return jsonify(self.getMachinesJSON()),200
 
     def getDotM(self,index):
-        return self.llMachines.getDot(index),200
+        dot = self.llMachines.getDot(index)
+        if dot:
+            return jsonify({"msg":dot}),200
+        return jsonify({"msg":"No hay datos cargados"})
 
-    def getElementsCSV(self):
+    def getElementsJSON(self):
         current = self.llElements.first
-        string_csv = ''
+        json = []
         while current:
-            string_csv += current.element.getCSV()
+            json.append(current.element.__dict__)
             current = current.next
-            if current: string_csv += '\n'
-        return string_csv
+        return json
 
     def getElements(self):
         self.llElements.sort()
-        return Response(self.getElementsJSON(),mimetype='text/csv'),200
+        return jsonify(self.getElementsJSON()),200
 
     def newElement(self,atomicNum,symbol,name):
         element = self.llElements.existElement(atomicNum,symbol,name)
         if not element:
             self.llElements.insert(Element(atomicNum,symbol,name))
-            return 'Elemento registrado',200
-        return 'El elemento ya existe',200
+            return jsonify({"msg":"Elemento registrado"}),200
+        return jsonify({"msg":"El elemento ya existe"}),200
 
     def getCompoundsJSON(self):
         current = self.llCompounds.first
-        string_csv = ''
+        json = []
         while current:
-            string_csv += f'{current.index},{current.name}'
+            json.append({"index":current.index,"name":current.name})
             current = current.next
-            if current: string_csv += '\n'
-        return string_csv
+        return json
 
     def getCompounds(self):
-        return Response(self.getCompoundsJSON(),mimetype='text/csv'),200
+        return jsonify(self.getCompoundsJSON()),200
 
     def getDotStep(self,machine,compound):
         machine = self.llMachines.getMachine(machine).machine
         compound = self.llCompounds.getCompound(compound).elements
         alg = Algorithm(machine)
         if alg.buildCompound(compound):
-            return alg.steps.getDot(),200
-        return 'No se puede construir',200
+            return jsonify({"dot":alg.steps.getDot()}),200
+        return jsonify({"dot":"No se puede construir"}),200

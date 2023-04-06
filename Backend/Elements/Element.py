@@ -10,6 +10,9 @@ class Element:
             if self.color != "#050505":
                 break;
 
+    def getCSV(self):
+        return f'{self.atomicNum},{self.symbol},{self.name}'
+
     def clone(self):
         newElement = Element(self.atomicNum,self.symbol,self.name)
         newElement.color = self.color

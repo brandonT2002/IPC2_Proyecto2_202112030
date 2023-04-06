@@ -14,7 +14,7 @@ def ping():
 def upload():
     data = request.json
     return ctrl.upload(
-        data['path']
+        data['xml']
     )
 
 @app.route('/machine',methods=['GET'])

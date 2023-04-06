@@ -5,8 +5,9 @@ from Machines.LinkedListElementsPin import LinkedListElementsPin
 from Compounds.LinkedListElementsComp import LinkedListElementsComp
 
 class Read:
-    def readFile(self,path):
-        self.file = minidom.parse(path)
+    def readFile(self,content):
+        #self.file = minidom.parse(path)
+        self.file = minidom.parseString(content)
         listelements = self.file.getElementsByTagName('listaElementos')[0]
         self.elements = listelements.getElementsByTagName('elemento')
 
