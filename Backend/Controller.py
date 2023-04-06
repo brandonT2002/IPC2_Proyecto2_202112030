@@ -58,6 +58,17 @@ class Controller:
             return jsonify({"msg":"Elemento registrado"}),200
         return jsonify({"msg":"El elemento ya existe"}),200
 
+    def getCompoundsJSON(self):
+        current = self.llCompounds.first
+        json = []
+        while current:
+            json.append({"index":current.index,"name":current.name})
+            current = current.next
+        return json
+
+    def getCompounds(self):
+        return jsonify(self.getCompoundsJSON()),200
+
     def getDotStep(self,machine,compound):
         machine = self.llMachines.getMachine(machine).machine
         compound = self.llCompounds.getCompound(compound).elements

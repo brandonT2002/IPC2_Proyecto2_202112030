@@ -41,6 +41,10 @@ def newElement():
         data['name']
     )
 
+@app.route('/compounds',methods=['GET'])
+def getCompounds():
+    return ctrl.getCompounds()
+
 @app.route('/compounds',methods=['POST'])
 def getDotStep():
     data = request.json
