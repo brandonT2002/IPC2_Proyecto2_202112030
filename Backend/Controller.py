@@ -14,17 +14,9 @@ class Controller:
         read = Read()
         read.readFile(path)
 
-        print('\nElementos')
         self.llElements : LinkedListElements = read.getElements(self.llElements)
-        self.llElements.iterated()
-
-        print('\nMaquinas')
         self.llMachines : LinkedListMachines = read.getMachines(self.llElements,self.llMachines)
-        self.llMachines.iterated()
-
-        print('\nCompuestos')
         self.llCompounds : LinkedListCompounds = read.getCompounds(self.llCompounds)
-        self.llCompounds.iterated()
 
         return jsonify({"msg":"Archivo cargado exitosamente"}),200
 
@@ -33,3 +25,15 @@ class Controller:
         if dot:
             return jsonify({"msg":dot}),200
         return jsonify({"msg":"No hay datos cargados"})
+
+    def getElementsJSON(self):
+        current = self.llElements.first
+        json = []
+        while current:
+            json.append(current.element.__dict__)
+            current = current.next
+        return json
+
+    def getElements(self):
+        self.llElements.sort()
+        return jsonify(self.getElementsJSON()),200

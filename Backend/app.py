@@ -24,5 +24,9 @@ def getDotM():
         data['dot']
     )
 
+@app.route('/getElements',methods=['GET'])
+def getElements():
+    return ctrl.getElements()
+
 if __name__ == '__main__':
     app.run(debug = True, port = 4000)
