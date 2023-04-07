@@ -138,6 +138,8 @@ h4{
 }
 .button{
     background-color: transparent;
+    font-family: var(--fontHeading);
+    font-size: 1.8rem;
     border-radius: 1.2rem;
     border: 1;
     box-sizing: border-box;
@@ -146,8 +148,9 @@ h4{
     outline: 0;
     cursor: pointer;
     text-align: center;
-    height: 4rem;
-    width: 20rem;
+    height: 5rem;
+    width: 25rem;
+    padding: 1rem;
 }
 .button:hover{
     background-color: var(--blue);
@@ -170,12 +173,14 @@ h4{
 .selectMachine{
     width: 100%;
     border: .2rem solid var(--gray);
+    border-radius: 1.2rem;
     background-color: var(--primary);
     color: var(--white);
     font-size: 1.8rem;
     font-family: var(--fontHeading);
     outline: none;
     padding: 1rem;
+    height: 5rem;
 }
 @media (min-width: 768px) {
     .selectMachine{
@@ -339,7 +344,7 @@ h4{
 }
 .submit {
     background-color: var(--blue);
-    border-radius: .6rem;
+    border-radius: 1.2rem;
     border: 0;
     box-sizing: border-box;
     color: var(--white);

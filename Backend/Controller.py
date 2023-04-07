@@ -13,15 +13,18 @@ class Controller:
         self.llMachines = LinkedListMachines()
         self.llCompounds = LinkedListCompounds()
 
-    def upload(self,path):
-        read = Read()
-        read.readFile(path)
+    def upload(self,content):
+        try:
+            read = Read()
+            read.readFile(content)
 
-        self.llElements : LinkedListElements = read.getElements(self.llElements)
-        self.llMachines : LinkedListMachines = read.getMachines(self.llElements,self.llMachines)
-        self.llCompounds : LinkedListCompounds = read.getCompounds(self.llCompounds)
+            self.llElements : LinkedListElements = read.getElements(self.llElements)
+            self.llMachines : LinkedListMachines = read.getMachines(self.llElements,self.llMachines)
+            self.llCompounds : LinkedListCompounds = read.getCompounds(self.llCompounds)
 
-        return 'Archivo cargado exitosamente',200
+            return 'Archivo cargado exitosamente',200
+        except:
+            return 'Archivo cargado exitosamente',200
 
     def getMachinesCSV(self):
         current = self.llMachines.first

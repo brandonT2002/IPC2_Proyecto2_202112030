@@ -15,10 +15,10 @@
 				fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
 			else
 				fileName = e.target.value.split( '\\' ).pop();
-                console.log(e.target.value)
-			if( fileName )
+			if( fileName ) {
 				label.querySelector( 'span' ).innerHTML = fileName;
-			else
+				uploadFile(this.files[0])
+			} else
 				label.innerHTML = labelVal;
 		});
 	});
