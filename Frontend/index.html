@@ -42,7 +42,7 @@
         <select name="machine" id="selectMachine" class="selectMachine">
             <option selected="selected" disabled="">Seleccione una Máquina</option>
         </select>
-        <button type="button" class="button" onclick="createBook()">Ver Máquina</button>
+        <button type="button" class="button" onclick="viewMachine()">Ver Máquina</button>
     </div>
     <div id="machine" class="container machine"></div>
     <!-- scripts -->
@@ -50,8 +50,8 @@
     <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
     <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
     <script src="js/index.js"></script>
-    <script src="js/machine.js"></script>
+    <!-- <script src="js/machine.js"></script> -->
     <script src="js/chooseFile.js"></script>
-    <!-- <script>getMachines()</script> -->
+    <script>getMachines()</script>
 </body>
 </html>
