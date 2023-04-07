@@ -52,7 +52,7 @@ class Controller:
 
     def getElements(self):
         self.llElements.sort()
-        return Response(self.getElementsJSON(),mimetype='text/csv'),200
+        return Response(self.getElementsCSV(),mimetype='text/csv'),200
 
     def newElement(self,atomicNum,symbol,name):
         element = self.llElements.existElement(atomicNum,symbol,name)

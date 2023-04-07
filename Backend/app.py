@@ -28,11 +28,11 @@ def getDotM():
         data['dot']
     )
 
-@app.route('/getElements',methods=['GET'])
+@app.route('/elements',methods=['GET'])
 def getElements():
     return ctrl.getElements()
 
-@app.route('/newElement',methods=['POST'])
+@app.route('/elements',methods=['POST'])
 def newElement():
     data = request.json
     return ctrl.newElement(

@@ -369,6 +369,7 @@ h4{
 table {
     border-radius: .6rem;
     border-collapse: collapse;
+    font-family: var(--fontHeading);
     width: 100%;
 }
 th, td {
@@ -380,9 +381,8 @@ tr:nth-child(even){
     padding: 4rem;
 }
 th {
-    background-color: rgba(17, 18, 34);
+    background-color: #131d27;
     color: var(--white);
-    border-bottom-color: rgb(71, 75, 77);
 }
 tr:hover{
     background-color: #303245;

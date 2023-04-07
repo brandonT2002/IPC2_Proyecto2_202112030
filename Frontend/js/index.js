@@ -24,6 +24,7 @@ function uploadFile(file){
                 response.text().then(text => {
                     alert(`${text}: ${file.name}`)
                     getMachines()
+                    viewElements()
                 })
             })
             .catch(error => {
@@ -49,6 +50,9 @@ function getMachines(){
             document.getElementById('selectMachine').innerHTML = option
         })
     })
+    .catch(error => {
+        // alert('Error')
+    })
 }
 
 function viewMachine(){
@@ -64,5 +68,32 @@ function viewMachine(){
             // d3.select('#machine').html('');
             d3.select('#machine').graphviz().scale(2.3).height(document.getElementById('machine').clientHeight).width(800*1.9).renderDot(text)
         })
+    })
+}
+
+function viewElements(){
+    fetch(`${api}/elements`,{
+        method: 'GET',
+        headers
+    })
+    .then(response => {
+        response.text().then(text => {
+            table = '<tr><th>Número Atómico</th><th>Símbolo</th><th>Elemento</th></tr>'
+            elements = text.split('\n')
+            for (let element of elements) {
+                element = element.split(',')
+                table += `<tr>
+                <td>${element[0]}</td>
+                <td>${element[1]}</td>
+                <td>${element[2]}</td>
+                </tr>`
+            }
+            if (elements.length > 0){
+                document.getElementById('elementsInfo').innerHTML = table
+            }
+        })
+    })
+    .catch(error => {
+
     })
 }
