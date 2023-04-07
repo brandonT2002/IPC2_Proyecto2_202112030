@@ -23,6 +23,7 @@ function uploadFile(file){
             .then(response => {
                 response.text().then(text => {
                     alert(`${text}: ${file.name}`)
+                    getMachines()
                 })
             })
             .catch(error => {
@@ -30,4 +31,23 @@ function uploadFile(file){
             })
 		}
 	}
+}
+
+function getMachines(){
+    fetch(`${api}/machine`,{
+        method: 'GET',
+        headers
+    })
+    .then(response => {
+        response.text().then(text => {
+            option = '<option selected="selected" disabled="">Seleccione una Máquina</option>'
+            options = text.split('\n')
+            for (let i = 0; i < options.length; i++) {
+                index = options
+                option += `<option>${options[i].replace(',',' - ')}</option>`
+            }
+            // console.log(option)
+            document.getElementById('selectMachine').innerHTML = option
+        })
+    })
 }
