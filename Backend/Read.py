@@ -47,6 +47,7 @@ class Read:
             for element in elements:
                 element = element.firstChild.data
                 elementsN.insert(element)
+            elementsN.iterated()
             llCompounds.insert(name,elementsN)
         return llCompounds
 

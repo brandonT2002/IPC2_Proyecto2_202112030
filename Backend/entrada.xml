@@ -57,25 +57,6 @@
                 </elementos>
             </pin>
         </Maquina>
-        <Maquina>
-            <nombre>Maquina del tiempo</nombre>
-            <numeroPines>2</numeroPines>
-            <numeroElementos>3</numeroElementos>
-            <pin>
-                <elementos>
-                    <elemento>Li</elemento>
-                    <elemento>He</elemento>
-                    <elemento>N</elemento>
-                </elementos>
-            </pin>
-            <pin>
-                <elementos>
-                    <elemento>C</elemento>
-                    <elemento>Be</elemento>
-                    <elemento>H</elemento>
-                </elementos>
-            </pin>
-        </Maquina>
     </listaMaquinas>
     <listaCompuestos>
         <compuesto>

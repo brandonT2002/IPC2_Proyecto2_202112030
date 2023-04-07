@@ -32,16 +32,12 @@ class LinkedListElements:
             current2 = self.first
             while current2:
 
-                if int(current2.element.atomicNum) > int(current2.next.element.atomicNum):
+                if current2.next and int(current2.element.atomicNum) > int(current2.next.element.atomicNum):
                     current2.element.atomicNum,current2.next.element.atomicNum = current2.next.element.atomicNum,current2.element.atomicNum
 
                 current2 = current2.next
-                if not current2.next:
-                    break
 
             current1 = current1.next
-            if not current1.next:
-                break
 
     def validateStatement(self,element):
         current = self.first

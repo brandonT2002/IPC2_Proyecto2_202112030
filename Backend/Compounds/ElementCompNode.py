@@ -4,3 +4,6 @@ class ElementCompNode:
         self.element = element
         self.next = None
         self.prev = None
+
+    def getCSV(self):
+        return f'{self.element}'

@@ -33,6 +33,8 @@ function uploadFile(file){
 
                     getMachines()
                     viewElements()
+                    viewCompounds()
+                    getCompounds()
                 })
             })
             .catch(error => {
@@ -50,9 +52,11 @@ function getMachines(){
     .then(response => {
         response.text().then(text => {
             option = '<option selected="selected" disabled="">Seleccione una Máquina</option>'
-            options = text.split('\n')
-            for (let machine of options) {
-                option += `<option>${machine.replace(',',' - ')}</option>`
+            if(text != 'None') {
+                options = text.split('\n')
+                for (let machine of options) {
+                    option += `<option>${machine.replace(',',' - ')}</option>`
+                }
             }
             // console.log(option)
             document.getElementById('selectMachine').innerHTML = option
@@ -64,7 +68,7 @@ function getMachines(){
 }
 
 function viewMachine(){
-    index = document.getElementById('selectMachine').selectedIndex - 1
+    let index = document.getElementById('selectMachine').selectedIndex - 1
     if (index === -1){
         swal({
             title: "¡Oops!",
@@ -100,30 +104,32 @@ function viewElements(){
     })
     .then(response => {
         response.text().then(text => {
-            table = '<tr><th>Número Atómico</th><th>Símbolo</th><th>Elemento</th></tr>'
-            elements = text.split('\n')
-            for (let element of elements) {
-                element = element.split(',')
-                table += `<tr>
-                <td>${element[0]}</td>
-                <td>${element[1]}</td>
-                <td>${element[2]}</td>
-                </tr>`
+            let table = '<tr><th id="noBooks" class="center-text">No hay elementos registrados</th></tr>'
+            if(text != 'None') {
+                console.log('ENTRA AQUÍ')
+                table = '<tr><th>Número Atómico</th><th>Símbolo</th><th>Elemento</th></tr>'
+                let elements = text.split('\n')
+                for (let element of elements) {
+                    element = element.split(',')
+                    table += `<tr>
+                    <td>${element[0]}</td>
+                    <td>${element[1]}</td>
+                    <td>${element[2]}</td>
+                    </tr>`
+                }
             }
-            if (elements.length > 0){
-                document.getElementById('elementsInfo').innerHTML = table
-            }
+            document.getElementById('elementsInfo').innerHTML = table
         })
     })
     .catch(error => {
-
+        alert(error)
     })
 }
 
 function newElement(){
-    atomicNumb = document.getElementById('atomicNum').value
-    symbol = document.getElementById('symbol').value
-    element = document.getElementById('element').value
+    let atomicNumb = document.getElementById('atomicNum').value
+    let symbol = document.getElementById('symbol').value
+    let element = document.getElementById('element').value
     if (atomicNumb.replace(' ','') == '' || symbol.replace(' ','') == '' || element.replace(' ','') == ''){
         swal({
             title: "¡Oops!",
@@ -192,12 +198,14 @@ function getCompounds(){
     })
     .then(response => {
         response.text().then(text => {
-            option = '<option selected="selected" disabled="">Seleccione un Compuesto</option>'
-            options = text.split('\n')
-            for (let machine of options) {
-                option += `<option>${machine.replace(',',' - ')}</option>`
+            let option = '<option selected="selected" disabled="">Seleccione un Compuesto</option>'
+            if(text != 'None') {
+                options = text.split('\n')
+                for (let machine of options) {
+                    machine = machine.split(',')
+                    option += `<option>${machine[0]} - ${machine[1]}</option>`
+                }
             }
-            // console.log(option)
             document.getElementById('selectCompound').innerHTML = option
         })
     })
@@ -206,9 +214,37 @@ function getCompounds(){
     })
 }
 
+function viewCompounds(){
+    fetch(`${api}/compounds`,{
+        method: 'GET',
+        headers
+    })
+    .then(response => {
+        response.text().then(text => {
+            let table = '<tr><th id="noBooks" class="center-text">No hay elementos Compuestos</th></tr>'
+            if(text != 'None') {
+                table = '<tr><th>ID</th><th>Compuesto</th><th>Fórumula</th></tr>'
+                let compounds = text.split('\n')
+                for (let compound of compounds) {
+                    compound = compound.split(',')
+                    table += `<tr>
+                    <td>${compound[0]}</td>
+                    <td>${compound[1]}</td>
+                    <td>${compound[2]}</td>
+                    </tr>`
+                }
+            }
+            document.getElementById('compoundsInfo').innerHTML = table
+        })
+    })
+    .catch(error => {
+        alert(error)
+    })
+}
+
 function viewStep(){
-    compound = document.getElementById('selectCompound').selectedIndex - 1
-    machine = document.getElementById('selectMachine').selectedIndex - 1
+    let compound = document.getElementById('selectCompound').selectedIndex - 1
+    let machine = document.getElementById('selectMachine').selectedIndex - 1
     if (compound === -1){
         swal({
             title: "¡Oops!",

@@ -9,12 +9,16 @@ class LinkedListCompounds:
     def insert(self,name,elements):
         if self.first:
             self.last.next = CompoundNode(self.index,name,elements)
-            self.last.prev = self.last
+            self.last.next.prev = self.last
             self.last = self.last.next
             self.index += 1
+            return
         self.first = CompoundNode(self.index,name,elements)
         self.last = self.first
         self.index += 1
+
+    def getCSV(self):
+        return f'{self.atomicNum},{self.symbol},{self.name}'
 
     def iterated(self):
         current = self.first

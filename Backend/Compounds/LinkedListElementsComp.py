@@ -6,7 +6,7 @@ class LinkedListElementsComp:
         self.last = None
         self.index = 0
 
-    def insert(self,element):
+    def insert(self,element: ElementCompNode):
         if self.first:
             self.last.next = ElementCompNode(self.index,element)
             self.last.next.prev = self.last
@@ -16,6 +16,15 @@ class LinkedListElementsComp:
         self.first = ElementCompNode(self.index,element)
         self.last = self.first
         self.index += 1
+
+    def getCSV(self):
+        current = self.first
+        csv = ''
+        while current:
+            csv += f'{current.getCSV()}'
+            current = current.next
+            if current: csv += ' '
+        return csv
 
     def size(self):
         return self.index

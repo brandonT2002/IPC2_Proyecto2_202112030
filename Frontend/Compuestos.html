@@ -38,7 +38,18 @@
             </div>
         </div>
     </header>
-    <div class="container containerMachinesCombo">
+    <div class="containerTable">
+        <div class="container container-table">
+            <table id="compoundsInfo">
+                <tr>
+                    <th id="noBooks" class="center-text">
+                        No hay elementos Compuestos
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="container containerCombo">
         <select name="compound" id="selectCompound" class="selectMachine">
             <option selected="selected" disabled="">Seleccione un Compuesto</option>
         </select>
@@ -56,6 +67,7 @@
     <script src="js/index.js"></script>
     <!-- <script src="js/step.js"></script> -->
     <script src="js/chooseFile.js"></script>
+    <script>viewCompounds()</script>
     <script>getCompounds()</script>
     <script>getMachines()</script>
 </body>

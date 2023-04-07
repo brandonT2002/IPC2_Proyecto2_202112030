@@ -718,6 +718,25 @@
             </elementos>
          </pin>
       </Maquina>
+      <Maquina>
+         <nombre>Maquina 01</nombre>
+         <numeroPines>2</numeroPines>
+         <numeroElementos>3</numeroElementos>
+         <pin>
+            <elementos>
+               <elemento>Li</elemento>
+               <elemento>He</elemento>
+               <elemento>N</elemento>
+            </elementos>
+         </pin>
+         <pin>
+            <elementos>
+               <elemento>C</elemento>
+               <elemento>Be</elemento>
+               <elemento>H</elemento>
+            </elementos>
+         </pin>
+      </Maquina>
    </listaMaquinas>
    <listaCompuestos>
       <compuesto>
@@ -735,5 +754,20 @@
             <elemento>Ta</elemento>
          </elementos>
       </compuesto>
+      <compuesto>
+         <nombre>Fortnite</nombre>
+         <elementos>
+            <elemento>B</elemento>
+            <elemento>V</elemento>
+            <elemento>At</elemento>
+            <elemento>Ti</elemento>
+            <elemento>Co</elemento>
+            <elemento>Dy</elemento>
+            <elemento>Mo</elemento>
+            <elemento>Li</elemento>
+            <elemento>He</elemento>
+            <elemento>Eu</elemento>
+         </elementos>
+      </compuesto>      
    </listaCompuestos>
 </CONFIG>
