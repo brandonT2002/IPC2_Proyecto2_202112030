@@ -42,9 +42,8 @@ function getMachines(){
         response.text().then(text => {
             option = '<option selected="selected" disabled="">Seleccione una Máquina</option>'
             options = text.split('\n')
-            for (let i = 0; i < options.length; i++) {
-                index = options
-                option += `<option>${options[i].replace(',',' - ')}</option>`
+            for (let machine of options) {
+                option += `<option>${machine.replace(',',' - ')}</option>`
             }
             // console.log(option)
             document.getElementById('selectMachine').innerHTML = option

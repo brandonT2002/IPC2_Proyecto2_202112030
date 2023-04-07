@@ -30,7 +30,7 @@ class Controller:
         current = self.llMachines.first
         string_csv = ''
         while current:
-            string_csv += f'{current.index},{current.name}'
+            string_csv += f'{int(current.index) + 1},{current.name}'
             current = current.next
             if current: string_csv += '\n'
         return string_csv
@@ -65,7 +65,7 @@ class Controller:
         current = self.llCompounds.first
         string_csv = ''
         while current:
-            string_csv += f'{current.index},{current.name}'
+            string_csv += f'{int(current.index) + 1},{current.name}'
             current = current.next
             if current: string_csv += '\n'
         return string_csv
