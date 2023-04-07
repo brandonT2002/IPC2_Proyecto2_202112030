@@ -9,9 +9,13 @@ from flask import Response
 
 class Controller:
     def __init__(self) -> None:
+        self.initObjects()
+
+    def initObjects(self):
         self.llElements = LinkedListElements()
         self.llMachines = LinkedListMachines()
         self.llCompounds = LinkedListCompounds()
+        return 'Sistema Restaurado',200
 
     def upload(self,content):
         try:
@@ -63,15 +67,6 @@ class Controller:
             self.llElements.insert(Element(atomicNum,symbol,name))
             return 'Elemento registrado',200
         return 'El elemento ya existe',200
-
-    def getElementsCSV_(self):
-        current = self.llCompounds.first.elements.first
-        string_csv = ''
-        while current:
-            string_csv += current.getCSV()
-            current = current.next
-            if current: string_csv += ' '
-        return string_csv
 
     def getCompoundsCSV(self):
         if not self.llCompounds.first:

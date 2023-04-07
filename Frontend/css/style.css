@@ -203,6 +203,7 @@ h4{
 }
 /*container image machine*/
 .machine{
+    padding-top: 2rem;
     width: 80%;
     height: 60rem;
 }
@@ -431,4 +432,23 @@ tr:hover{
 }
 .swal-icon--success__hide-corners {
     background-color: var(--secondary);
+}
+/* floating button */
+.floating-button {
+    font-family: var(--fontParrafo);
+    font-size: 1.8rem;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border: .15rem solid;
+    border-color: #dc2f55;
+    color: #dc2f55;
+    padding: 10px 20px;
+    border-radius: 1.2rem;
+    text-decoration: none;
+}
+.floating-button:hover {
+    background-color: #dc2f55;
+    color: var(--white);
+    transition: 20;
 }

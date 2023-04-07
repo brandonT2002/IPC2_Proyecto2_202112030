@@ -22,7 +22,7 @@ function uploadFile(file){
                         buttons: false,
                         timer: 2000
                     })
-                    getMachines()
+                    viewElements()
                 })
             })
             .catch(error => {
@@ -60,7 +60,7 @@ function deleteInfo(){
     .then(response => {
         response.text().then(text => {
             if(text == 'Sistema Restaurado'){
-                getMachines()
+                viewElements()
             }
         })
     })
@@ -73,55 +73,95 @@ function deleteInfo(){
     })
 }
 
-function getMachines(){
-    fetch(`${api}/machine`,{
+function viewElements(){
+    fetch(`${api}/elements`,{
         method: 'GET',
         headers
     })
     .then(response => {
         response.text().then(text => {
-            option = '<option selected="selected" disabled="">Seleccione una Máquina</option>'
+            let table = '<tr><th id="noBooks" class="center-text">No hay elementos registrados</th></tr>'
             if(text != 'None') {
-                text = `number,name\n${text}`;
+                table = '<tr><th>Número Atómico</th><th>Símbolo</th><th>Elemento</th></tr>'
+                text = `number,symbol,name\n${text}`;
                 text = Papa.parse(text,{header:true,dynamicTyping:true,skipEmptyLines:true}).data
-                for (let machine of text) {
-                    option += `<option>${machine.number} - ${machine.name}</option>`
+                for(let element of text) {
+                    table += `<tr>
+                    <td>${element.number}</td>
+                    <td>${element.symbol}</td>
+                    <td>${element.name}</td>
+                    </tr>`
                 }
             }
-            document.getElementById('selectMachine').innerHTML = option
+            document.getElementById('elementsInfo').innerHTML = table
         })
     })
     .catch(error => {
-        // alert('Error')
+        // alert(error)
     })
 }
 
-function viewMachine(){
-    let index = document.getElementById('selectMachine').selectedIndex - 1
-    if (index === -1){
+function newElement(){
+    let atomicNumb = document.getElementById('atomicNum').value
+    let symbol = document.getElementById('symbol').value
+    let element = document.getElementById('element').value
+    if (atomicNumb.replace(' ','') == '' || symbol.replace(' ','') == '' || element.replace(' ','') == ''){
         swal({
             title: "¡Oops!",
-            text: "No se ha seleccionado una Máquina",
+            text: "Todos los campos son obligatorios",
             icon: "info",
             buttons: false,
             timer: 2000
         })
+        return
     }
-    else{
-        fetch(`${api}/machine`,{
-            method: 'POST',
-            headers,
-            body: `{"dot": ${index}}`
+    fetch(`${api}/elements`,{
+        method: 'POST',
+        headers,
+        body: `{
+            "atomicNum": "${atomicNumb}",
+            "symbol": "${symbol}",
+            "name": "${element}"
+        }`
+    })
+    .then(response => [
+        response.text().then(text => {
+            if (text == 'Elemento registrado'){
+                swal({
+                    title: "¡Bien!",
+                    text: `${text}`,
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000
+                })
+                resetModal()
+                viewElements()
+            }
+            else{
+                swal({
+                    title: "¡Noop!",
+                    text: `${text}`,
+                    icon: "warning",
+                    buttons: false,
+                    timer: 2000
+                })
+            }
         })
-        .then(response => {
-            response.text().then(text => {
-                // console.log(text)
-                // d3.select('#machine').html('');
-                d3.select('#machine').graphviz().scale(2.3).height(document.getElementById('machine').clientHeight).width(800*1.9).renderDot(text)
-            })
+    ])
+    .catch(error => {
+        swal({
+            title: "¡Oops!",
+            text: "Ocurrió un error",
+            icon: "info",
+            buttons: false,
+            timer: 2000
         })
-        .catch(error => {
-    
-        })
-    }
+    })
+}
+
+function resetModal(){
+    document.getElementById('atomicNum').value=''
+    document.getElementById('symbol').value=''
+    document.getElementById('element').value=''
+    window.location.href = 'Elementos.html#close'
 }

@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="./js/Headers.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -78,10 +80,26 @@
             </tr>
         </table>
     </div>
+    <a href="#" class="floating-button" onclick="reset()">Resetear Sistema</a>
     <!-- scripts -->
-    <script src="js/index.js"></script>
+    <script src="js/Elements.js"></script>
     <script src="js/chooseFile.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>viewElements()</script>
+    <script>
+        window.addEventListener(
+            'keydown',
+            function(event){
+                //alert(event.keyCode)
+                if(event.keyCode == 116){
+                    window.location.href = 'Elementos.html#close'
+                }
+                else if(event.keyCode == 27){
+                    window.location.href = 'Elementos.html#close'
+                }
+            },
+            false
+        )
+    </script>
 </body>
 </html>

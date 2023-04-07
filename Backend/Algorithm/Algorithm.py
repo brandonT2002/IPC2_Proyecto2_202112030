@@ -19,26 +19,16 @@ class Algorithm:
             else:
                 return False
             element = element.next
-        self.movePins(compound.size())
-        # with open('./Backend/Dot/dotMachine.dot','w',encoding='utf-8') as dot:
-        #     dot.write(self.steps.getDot())
-        #resetear pines
+        self.movePins()
         self.machine.reset()
         return True
 
-    def movePins(self,compoundSize):
-        # print('Máquina')
-        # print(self.machine)
-        # print()
+    def movePins(self):
         self.steps.insert(self.machine)
         for i in range(self.positions.pinsID.size()):
             position = self.positions.pinsID.get(i)
             pin = self.machine.getPin(position.pinY)
             pin.listElements.startPin()
-        print('INICIO DE LA FUSIÓN')
-        print('Máquina')
-        print(self.machine)
-        print()
         self.steps.insert(self.machine)
         while not self.positions.isEmpty():
             for i in range(self.positions.size()):
@@ -50,22 +40,13 @@ class Algorithm:
                     pin.listElements.moveLeft()
                 elif pin.listElements.getCurrent().index == position.elmX and not pin.listElements.moved:
                     pin.listElements.moved = True
-            print('=====================')
-            print('Máquina')
-            print(self.machine)
-            print()
             position = self.positions.get(0)
             pin = self.machine.getPin(position.pinY)
             self.steps.insert(self.machine)
             if pin.listElements.getCurrent().index == position.elmX:
                 first = self.positions.pop()
-                print('=====================')
-                print('FUSIONA',first.element,f'({first.pinY}, {first.elmX})')
-                print('Máquina')
-                print(self.machine)
-                print()
                 self.steps.insert(self.machine,first.pinY,first.elmX)
-            self.machine.reset()
+            self.machine.resetMoves()
 
     def getCoordinate(self,element):
         for j in range(self.machine.sizeElements()):

@@ -43,7 +43,7 @@ class Machine:
     def sizeElements(self):
         return self.first.listElements.index
 
-    def reset(self):
+    def resetMoves(self):
         current = self.first
         while current:
             current.listElements.resetMove()

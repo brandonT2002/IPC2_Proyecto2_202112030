@@ -10,11 +10,15 @@ ctrl = Controller()
 def ping():
     return jsonify({'message':'API IPC2-Proyecto2'})
 
+@app.route('/reset',methods=['DELETE'])
+def reset():
+    return ctrl.initObjects()
+
 @app.route('/uploadFile',methods=['POST'])
 def upload():
     data = request.json
     return ctrl.upload(
-        data['xml']
+        data.get('xml')
     )
 
 @app.route('/machine',methods=['GET'])
@@ -25,7 +29,7 @@ def getMachines():
 def getDotM():
     data = request.json
     return ctrl.getDotM(
-        data['dot']
+        data.get('dot')
     )
 
 @app.route('/elements',methods=['GET'])
@@ -36,9 +40,9 @@ def getElements():
 def newElement():
     data = request.json
     return ctrl.newElement(
-        data['atomicNum'],
-        data['symbol'],
-        data['name']
+        data.get('atomicNum'),
+        data.get('symbol'),
+        data.get('name')
     )
 
 @app.route('/compounds',methods=['GET'])
@@ -49,8 +53,8 @@ def getCompounds():
 def getDotStep():
     data = request.json
     return ctrl.getDotStep(
-        data['machine'],
-        data['compound']
+        data.get('machine'),
+        data.get('compound')
     )
 
 if __name__ == '__main__':
