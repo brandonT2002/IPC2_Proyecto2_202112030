@@ -23,6 +23,14 @@ function uploadFile(file){
             .then(response => {
                 response.text().then(text => {
                     alert(`${text}: ${file.name}`)
+                    swal({
+                        title: "¡Bien!",
+                        text: `${text}: ${file.name}`,
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000
+                    })
+
                     getMachines()
                     viewElements()
                 })
@@ -64,10 +72,13 @@ function viewMachine(){
     })
     .then(response => {
         response.text().then(text => {
-            console.log(text)
+            // console.log(text)
             // d3.select('#machine').html('');
             d3.select('#machine').graphviz().scale(2.3).height(document.getElementById('machine').clientHeight).width(800*1.9).renderDot(text)
         })
+    })
+    .catch(error => {
+
     })
 }
 
@@ -96,4 +107,69 @@ function viewElements(){
     .catch(error => {
 
     })
+}
+
+function newElement(){
+    atomicNumb = document.getElementById('atomicNum').value
+    symbol = document.getElementById('symbol').value
+    element = document.getElementById('element').value
+    if (atomicNumb.replace(' ','') == '' || symbol.replace(' ','') == '' || element.replace(' ','') == ''){
+        swal({
+            title: "¡Oops!",
+            text: "Todos los campos son obligatorios",
+            icon: "info",
+            buttons: false,
+            timer: 2000
+        })
+        return
+    }
+    fetch(`${api}/elements`,{
+        method: 'POST',
+        headers,
+        body: `{
+            "atomicNum": "${atomicNumb}",
+            "symbol": "${symbol}",
+            "name": "${element}"
+        }`
+    })
+    .then(response => [
+        response.text().then(text => {
+            if (text == 'Elemento registrado'){
+                swal({
+                    title: "¡Bien!",
+                    text: `${text}`,
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000
+                })
+                resetModal()
+                viewElements()
+            }
+            else{
+                swal({
+                    title: "¡Noop!",
+                    text: `${text}`,
+                    icon: "warning",
+                    buttons: false,
+                    timer: 2000
+                })
+            }
+        })
+    ])
+    .catch(error => {
+        swal({
+            title: "¡Oops!",
+            text: "Ocurrió un error",
+            icon: "info",
+            buttons: false,
+            timer: 2000
+        })
+    })
+}
+
+function resetModal(){
+    document.getElementById('atomicNum').value=''
+    document.getElementById('symbol').value=''
+    document.getElementById('element').value=''
+    window.location.href = 'Elementos.html#close'
 }

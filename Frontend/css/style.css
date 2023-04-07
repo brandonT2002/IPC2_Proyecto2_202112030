@@ -291,7 +291,8 @@ h4{
     width: 100%;
 } 
 .input {
-    background-color: #303245;
+    font-family: var(--fontParrafo);
+    background-color: #101922;
     border-radius: .6rem;
     border: 0;
     box-sizing: border-box;
@@ -343,6 +344,8 @@ h4{
     color: #dc2f55;
 }
 .submit {
+    font-family: var(--fontParrafo);
+    font-size: 1.8rem;
     background-color: var(--blue);
     border-radius: 1.2rem;
     border: 0;
@@ -381,9 +384,37 @@ tr:nth-child(even){
     padding: 4rem;
 }
 th {
-    background-color: #131d27;
+    background-color: #101922;
     color: var(--white);
 }
 tr:hover{
-    background-color: #303245;
+    background-color: #bdcdd623;
+}
+/* Alerts */
+.swal-modal {
+    color: var(--white);
+    background-color: var(--secondary);
+}
+.swal-title{
+    color: var(--white);
+}
+.swal-text{
+    color: var(--white);
+}
+.swal-button--cancel{
+    color: var(--white);
+    background-color: #2f3146;
+}
+.swal-button--cancel:not([disabled]):hover{
+    background-color: #1f202e;
+}
+.swal-overlay{
+    backdrop-filter: blur(1rem);
+    background: rgba(0, 0, 0, 0.75);
+}
+.swal-icon--success:after, .swal-icon--success:before {
+    background-color: var(--secondary);
+}
+.swal-icon--success__hide-corners {
+    background-color: var(--secondary);
 }

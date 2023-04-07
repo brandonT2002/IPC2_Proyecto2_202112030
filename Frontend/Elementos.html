@@ -49,22 +49,22 @@
                     <h2 class="center-text">Agregar Elemento</h2>
                     <div class="container-fields">
                         <div class="input-container ic2">
-                            <input id="isbn" class="input" type="number" min="0" placeholder=" " />
+                            <input id="atomicNum" class="input" type="number" min="0" placeholder=" " />
                             <div class="cut cut-short"></div>
-                            <label for="isbn" class="placeholder">No. Atómico</label>
+                            <label for="atomicNum" class="placeholder">No. Atómico</label>
                         </div>
                         <div class="input-container ic2">
-                            <input id="author" class="input" type="text" placeholder=" " />
+                            <input id="symbol" class="input" type="text" placeholder=" " />
                             <div class="cut cut-short"></div>
-                            <label for="author" class="placeholder">Simbolo</>
+                            <label for="symbol" class="placeholder">Simbolo</>
                         </div>
                         <div class="input-container ic2">
-                            <input id="title" class="input" type="text" placeholder=" " />
+                            <input id="element" class="input" type="text" placeholder=" " />
                             <div class="cut cut-short"></div>
-                            <label for="title" class="placeholder">Elemento</>
+                            <label for="element" class="placeholder">Elemento</>
                         </div>
                     </div>
-                    <button type="button" class="submit" onclick="createBook()">Crear Libro</button>
+                    <button type="button" class="submit" onclick="newElement()">Crear Libro</button>
                 </div>
             </form>
         </div>
@@ -81,6 +81,7 @@
     <!-- scripts -->
     <script src="js/index.js"></script>
     <script src="js/chooseFile.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>viewElements()</script>
 </body>
 </html>
