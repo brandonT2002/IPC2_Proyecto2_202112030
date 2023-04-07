@@ -65,21 +65,32 @@ function getMachines(){
 
 function viewMachine(){
     index = document.getElementById('selectMachine').selectedIndex - 1
-    fetch(`${api}/machine`,{
-        method: 'POST',
-        headers,
-        body: `{"dot": ${index}}`
-    })
-    .then(response => {
-        response.text().then(text => {
-            // console.log(text)
-            // d3.select('#machine').html('');
-            d3.select('#machine').graphviz().scale(2.3).height(document.getElementById('machine').clientHeight).width(800*1.9).renderDot(text)
+    if (index === -1){
+        swal({
+            title: "¡Oops!",
+            text: "No se ha seleccionado una Máquina",
+            icon: "info",
+            buttons: false,
+            timer: 2000
         })
-    })
-    .catch(error => {
-
-    })
+    }
+    else{
+        fetch(`${api}/machine`,{
+            method: 'POST',
+            headers,
+            body: `{"dot": ${index}}`
+        })
+        .then(response => {
+            response.text().then(text => {
+                // console.log(text)
+                // d3.select('#machine').html('');
+                d3.select('#machine').graphviz().scale(2.3).height(document.getElementById('machine').clientHeight).width(800*1.9).renderDot(text)
+            })
+        })
+        .catch(error => {
+    
+        })
+    }
 }
 
 function viewElements(){
@@ -172,4 +183,68 @@ function resetModal(){
     document.getElementById('symbol').value=''
     document.getElementById('element').value=''
     window.location.href = 'Elementos.html#close'
+}
+
+function getCompounds(){
+    fetch(`${api}/compounds`,{
+        method: 'GET',
+        headers
+    })
+    .then(response => {
+        response.text().then(text => {
+            option = '<option selected="selected" disabled="">Seleccione un Compuesto</option>'
+            options = text.split('\n')
+            for (let machine of options) {
+                option += `<option>${machine.replace(',',' - ')}</option>`
+            }
+            // console.log(option)
+            document.getElementById('selectCompound').innerHTML = option
+        })
+    })
+    .catch(error => {
+        // alert('Error')
+    })
+}
+
+function viewStep(){
+    compound = document.getElementById('selectCompound').selectedIndex - 1
+    machine = document.getElementById('selectMachine').selectedIndex - 1
+    if (compound === -1){
+        swal({
+            title: "¡Oops!",
+            text: "No se ha seleccionado un Compuesto",
+            icon: "info",
+            buttons: false,
+            timer: 2000
+        })
+    }
+    else if (machine === -1){
+        swal({
+            title: "¡Oops!",
+            text: "No se ha seleccionado una Máquina",
+            icon: "info",
+            buttons: false,
+            timer: 2000
+        })
+    }
+    else{
+        fetch(`${api}/compounds`,{
+            method: 'POST',
+            headers,
+            body: `{
+                "machine": ${machine},
+                "compound": ${compound}
+            }`
+        })
+        .then(response => {
+            response.text().then(text => {
+                // console.log(text)
+                // d3.select('#machine').html('');
+                d3.select('#step').graphviz().scale(2.3).height(document.getElementById('step').clientHeight).width(800*1.9).renderDot(text)
+            })
+        })
+        .catch(error => {
+    
+        })
+    }
 }

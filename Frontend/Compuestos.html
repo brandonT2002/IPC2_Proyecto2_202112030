@@ -39,22 +39,24 @@
         </div>
     </header>
     <div class="container containerMachinesCombo">
+        <select name="compound" id="selectCompound" class="selectMachine">
+            <option selected="selected" disabled="">Seleccione un Compuesto</option>
+        </select>
         <select name="machine" id="selectMachine" class="selectMachine">
             <option selected="selected" disabled="">Seleccione una Máquina</option>
         </select>
-        <select name="machine" id="selectMachine" class="selectMachine">
-            <option selected="selected" disabled="">Seleccione un Compuesto</option>
-        </select>
+        <button type="button" class="button" onclick="viewStep()">Construir Compuesto</button>
     </div>
     <div id="step" class="container machine"></div>
-    <div id="machine" class="container machine"></div>
     <!-- scripts -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
     <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/index.js"></script>
-    <script src="js/machine.js"></script>
-    <script src="js/step.js"></script>
+    <!-- <script src="js/step.js"></script> -->
     <script src="js/chooseFile.js"></script>
+    <script>getCompounds()</script>
+    <script>getMachines()</script>
 </body>
 </html>
