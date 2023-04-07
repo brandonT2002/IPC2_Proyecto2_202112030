@@ -50,3 +50,19 @@ function getMachines(){
         })
     })
 }
+
+function viewMachine(){
+    index = document.getElementById('selectMachine').selectedIndex - 1
+    fetch(`${api}/machine`,{
+        method: 'POST',
+        headers,
+        body: `{"dot": ${index}}`
+    })
+    .then(response => {
+        response.text().then(text => {
+            console.log(text)
+            // d3.select('#machine').html('');
+            d3.select('#machine').graphviz().scale(2.3).height(document.getElementById('machine').clientHeight).width(800*1.9).renderDot(text)
+        })
+    })
+}
