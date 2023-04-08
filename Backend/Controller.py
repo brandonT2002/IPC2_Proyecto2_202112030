@@ -85,10 +85,13 @@ class Controller:
     def getDotStep(self,machine,compound):
         machine = self.llMachines.getMachine(machine).machine
         compound = self.llCompounds.getCompound(compound).elements
-        alg = Algorithm(machine)
-        if alg.buildCompound(compound):
-            return alg.steps.getDot(),200
+        self.alg = Algorithm(machine)
+        if self.alg.buildCompound(compound):
+            return self.alg.steps.getDot(),200
         return 'No se puede construir',200
+
+    def getDotStepDescription(self):
+        return self.alg.steps.getDotDescription(),200
 
     def getMachinesC(self,compound):
         if not self.llMachines.first:

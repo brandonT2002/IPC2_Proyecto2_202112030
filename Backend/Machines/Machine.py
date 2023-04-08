@@ -99,7 +99,7 @@ class Machine:
     def getStep(self,stepN,pinY,elmX,colors):
         dot = f'node{stepN} [shape=none, margin=0, label=\n<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="5">\n'
         title = f'Segundo {stepN}' if stepN > 0 else 'Estado Inicial'
-        dot += f'<tr>\n<td border="0" colspan="{self.sizeElements() + 1}" align="left">{title}</td>\n</tr>'
+        dot += f'<tr>\n<td border="0" colspan="{self.sizeElements() + 1}" align="left">{title}</td>\n</tr>\n'
         current = self.first
         while current:
             dot += '<tr>\n'

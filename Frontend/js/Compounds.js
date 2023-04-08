@@ -91,7 +91,7 @@ function getMachinesC(){
                 text = `number,name,time\n${text}`;
                 text = Papa.parse(text,{header:true,dynamicTyping:true,skipEmptyLines:true}).data
                 for (let machine of text) {
-                    option += `<option>${machine.number} - ${machine.name} - ${machine.time}s</option>`
+                    option += `<option name="${machine.number - 1}">${machine.number} - ${machine.name} - ${machine.time}s</option>`
                 }
                 option += '</select>'
             }
@@ -160,7 +160,8 @@ function viewCompounds(){
 
 function viewStep(){
     let compound = document.getElementById('selectCompound').selectedIndex - 1
-    let machine = document.getElementById('selectMachine').selectedIndex - 1
+    let selectedM = document.getElementById('selectMachine')
+    let machine = selectedM[selectedM.selectedIndex].getAttribute('name')
     if (compound === -1){
         swal({
             title: "¡Oops!",
@@ -190,9 +191,16 @@ function viewStep(){
         })
         .then(response => {
             response.text().then(text => {
-                // console.log(text)
-                // d3.select('#machine').html('');
                 d3.select('#step').graphviz().scale(2.3).height(document.getElementById('step').clientHeight).width(800*1.9).renderDot(text)
+                fetch(`${api}/compounds`,{
+                    method: 'PUT',
+                    headers
+                })
+                .then(response1 => {
+                    response1.text().then(text1 => {
+                        d3.select('#stepD').graphviz().scale(2.3).height(document.getElementById('stepD').clientHeight).width(800*1.9).renderDot(text1)
+                    })
+                })
             })
         })
         .catch(error => {

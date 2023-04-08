@@ -594,6 +594,25 @@
    </listaElementos>
    <listaMaquinas>
       <Maquina>
+         <nombre>Maquina 01</nombre>
+         <numeroPines>2</numeroPines>
+         <numeroElementos>3</numeroElementos>
+         <pin>
+            <elementos>
+               <elemento>Li</elemento>
+               <elemento>He</elemento>
+               <elemento>N</elemento>
+            </elementos>
+         </pin>
+         <pin>
+            <elementos>
+               <elemento>C</elemento>
+               <elemento>Be</elemento>
+               <elemento>H</elemento>
+            </elementos>
+         </pin>
+      </Maquina>
+      <Maquina>
          <nombre>prueba</nombre>
          <numeroPines>5</numeroPines>
          <numeroElementos>100</numeroElementos>
@@ -715,25 +734,6 @@
                <elemento>Cf</elemento>
                <elemento>Es</elemento>
                <elemento>Fm</elemento>
-            </elementos>
-         </pin>
-      </Maquina>
-      <Maquina>
-         <nombre>Maquina 01</nombre>
-         <numeroPines>2</numeroPines>
-         <numeroElementos>3</numeroElementos>
-         <pin>
-            <elementos>
-               <elemento>Li</elemento>
-               <elemento>He</elemento>
-               <elemento>N</elemento>
-            </elementos>
-         </pin>
-         <pin>
-            <elementos>
-               <elemento>C</elemento>
-               <elemento>Be</elemento>
-               <elemento>H</elemento>
             </elementos>
          </pin>
       </Maquina>

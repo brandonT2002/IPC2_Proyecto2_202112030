@@ -1,4 +1,4 @@
-import random
+from Machines.Instructions import Instructions
 from Machines.Machine import Machine
 
 class Step:
@@ -7,16 +7,16 @@ class Step:
         self.machine : Machine = machine
         self.pinY = pinY
         self.elmX = elmX
-        self.next = None
-        self.prev = None
+        self.next: Step = None
+        self.prev: Step = None
 
     def __str__(self) -> str:
         return f'pinY = {self.pinY} - elmX = {self.elmX}'
 
 class Steps:
     def __init__(self):
-        self.first = None
-        self.last = None
+        self.first: Step = None
+        self.last: Step = None
         self.index = 0
         self.colorsRow = ColorList()
 
@@ -51,6 +51,8 @@ class Steps:
     def iterated(self):
         current = self.first
         while current:
+            print('Estado Inicial' if current.index == 0 else f'Segundo {current.index}')
+            print(current.machine)
             current = current.next
 
     def getDot(self):
@@ -63,6 +65,41 @@ class Steps:
                 dot += f'node{current.prev.index} -> node{current.index}[style=invis];\n'
         dot += '}'
         return dot
+
+    def getDotDescription(self):
+        current = self.first.next
+        instructions = Instructions()
+        while current:
+            if current.index > 1:
+                current2 = current.machine.first
+                current3 = current.prev.machine.first
+                while current2:
+                    elementsCurrent = current2.listElements
+                    elementsPrev = current3.listElements
+                    if elementsCurrent.getCurrent():
+                        if current.elmX != -1 and current.pinY != -1 and current.pinY == current2.index:
+                            instructions.insert(current2.index,f'Fusionar {elementsCurrent.get(current.elmX).element.symbol}')
+                        else:
+                            if elementsCurrent.getCurrent().index < elementsPrev.getCurrent().index:
+                                instructions.insert(current2.index,'Mover Atrás')
+                            elif elementsCurrent.getCurrent().index > elementsPrev.getCurrent().index:
+                                instructions.insert(current2.index,'Mover Adelante')
+                            elif elementsCurrent.getCurrent().index == elementsPrev.getCurrent().index:
+                                instructions.insert(current2.index,'Esperar')
+                    else:
+                        instructions.insert(current2.index,'Sin usar')
+                    current2 = current2.next
+                    current3 = current3.next
+            else:
+                current2 = current.machine.first
+                while current2:
+                    if current2.listElements.getCurrent():
+                        instructions.insert(current2.index,'Mover Adelante')
+                    else:
+                        instructions.insert(current2.index,'Sin usar')
+                    current2 = current2.next
+            current = current.next
+        return instructions.getDot()
 
     def createColors(self):
         self.colorsRow.insert('#B9E0FF')

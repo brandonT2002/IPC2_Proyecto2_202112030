@@ -62,5 +62,9 @@ def getDotStep():
         data.get('compound')
     )
 
+@app.route('/compounds',methods=['PUT'])
+def getDotStepDescription():
+    return ctrl.getDotStepDescription()
+
 if __name__ == '__main__':
     app.run(debug = True, port = 4000)
