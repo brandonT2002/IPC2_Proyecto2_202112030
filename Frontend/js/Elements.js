@@ -4,8 +4,7 @@ function uploadFile(file){
 		reader.readAsText(file,'utf-8')
 		reader.onload = function(evt){
 			let xml = evt.target.result.toString()
-            xml = xml.replace('<?xml version="1.0" encoding="UTF-8"?>','')
-            xml = xml.replace('<?xml version="1.0"?>','')
+            xml = xml.replace(/"/g,'\\"')
             xml = xml.replace(/\r?\n|\r/g,'')
             fetch(`${api}/uploadFile`,{
                 method : 'POST',

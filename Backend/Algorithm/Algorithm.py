@@ -73,11 +73,5 @@ class Algorithm:
         dot += '</TABLE>\n'
         dot += '];\n'
 
-    def getDot(self):
-        pass
-
-
-
-
-
-# Li Cr Gd Bi Sm
+    def getTime(self):
+        return f'{self.steps.index - 1}'

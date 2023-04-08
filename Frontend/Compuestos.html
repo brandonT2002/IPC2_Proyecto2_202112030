@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Máquinas</title>
+    <title>Compuestos</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,13 +52,14 @@
         </div>
     </div>
     <div class="container containerCombo">
-        <select name="compound" id="selectCompound" class="selectMachine">
+        <select name="compound" id="selectCompound" class="selectMachine" onchange="getMachinesC()">
             <option selected="selected" disabled="">Seleccione un Compuesto</option>
         </select>
-        <select name="machine" id="selectMachine" class="selectMachine">
-            <option selected="selected" disabled="">Seleccione una Máquina</option>
-        </select>
-        <button type="button" class="button" onclick="viewStep()">Construir Compuesto</button>
+        <div id="selectMachine1"></div>
+        <div id="buildButton"></div>
+        <div class="derechaButtonOut">
+            <button type="button" class="button1">Archivo de Salida</button>
+        </div>
     </div>
     <div id="step" class="container machine"></div>
     <a href="#" class="floating-button" onclick="reset()">Resetear Sistema</a>
@@ -72,6 +73,5 @@
     <script src="js/chooseFile.js"></script>
     <script>viewCompounds()</script>
     <script>getCompounds()</script>
-    <script>getMachines()</script>
 </body>
 </html>

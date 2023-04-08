@@ -157,6 +157,27 @@ h4{
     color: var(--white);
     transition: .3s;
 }
+.button1{
+    background-color: transparent;
+    font-family: var(--fontHeading);
+    font-size: 1.8rem;
+    border-radius: 1.2rem;
+    border: 1;
+    box-sizing: border-box;
+    color: #00c07a;
+    border-color: #00c07a;
+    outline: 0;
+    cursor: pointer;
+    text-align: center;
+    height: 5rem;
+    width: 25rem;
+    padding: 1rem;
+}
+.button1:hover{
+    background-color: #00c07a;
+    color: var(--white);
+    transition: .3s;
+}
 /*Container combobox*/
 .containerMachinesCombo{
     display: flex;
@@ -178,6 +199,11 @@ h4{
     justify-content: flex-start;
     padding: 0rem 0rem 0rem 11rem;
     gap: 2rem;
+}
+.derechaButtonOut {
+    width: 100%;
+    text-align: right;
+    padding: 0 11.6rem 0 0;
 }
 @media (max-width: 768px) {
     .containerMachinesCombo{

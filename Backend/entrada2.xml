@@ -768,6 +768,17 @@
             <elemento>He</elemento>
             <elemento>Eu</elemento>
          </elementos>
-      </compuesto>      
+      </compuesto>
+      <compuesto>
+         <nombre>Compuesto 01</nombre>
+         <elementos>
+            <elemento>Li</elemento>
+            <elemento>Li</elemento>
+            <elemento>Be</elemento>
+            <elemento>He</elemento>
+            <elemento>Be</elemento>
+            <elemento>Li</elemento>
+         </elementos>
+      </compuesto>
    </listaCompuestos>
 </CONFIG>

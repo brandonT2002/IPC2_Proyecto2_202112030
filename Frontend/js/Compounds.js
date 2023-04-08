@@ -4,8 +4,7 @@ function uploadFile(file){
 		reader.readAsText(file,'utf-8')
 		reader.onload = function(evt){
 			let xml = evt.target.result.toString()
-            xml = xml.replace('<?xml version="1.0" encoding="UTF-8"?>','')
-            xml = xml.replace('<?xml version="1.0"?>','')
+            xml = xml.replace(/"/g,'\\"')
             xml = xml.replace(/\r?\n|\r/g,'')
             fetch(`${api}/uploadFile`,{
                 method : 'POST',
@@ -22,7 +21,6 @@ function uploadFile(file){
                         buttons: false,
                         timer: 2000
                     })
-                    getMachines()
                     getCompounds()
                     viewCompounds()
                 })
@@ -63,7 +61,7 @@ function deleteInfo(){
         response.text().then(text => {
             if(text == 'Sistema Restaurado'){
                 getCompounds()
-                getMachines()
+                getMachinesC()
                 viewCompounds()
             }
         })
@@ -77,27 +75,36 @@ function deleteInfo(){
     })
 }
 
-function getMachines(){
-    fetch(`${api}/machine`,{
-        method: 'GET',
-        headers
+function getMachinesC(){
+    let compound = document.getElementById('selectCompound').selectedIndex - 1
+    document.getElementById('buildButton').innerHTML = ''
+    fetch(`${api}/machinesC`,{
+        method: 'POST',
+        headers,
+        body: `{"compound":${compound}}`
     })
     .then(response => {
         response.text().then(text => {
-            option = '<option selected="selected" disabled="">Seleccione una Máquina</option>'
+            let option = ''
             if(text != 'None') {
-                text = `number,name\n${text}`;
+                option = '<select name="machine" id="selectMachine" class="selectMachine" onchange="putButtonBuild()"><option selected="selected" disabled="">Seleccione una Máquina</option>'
+                text = `number,name,time\n${text}`;
                 text = Papa.parse(text,{header:true,dynamicTyping:true,skipEmptyLines:true}).data
                 for (let machine of text) {
-                    option += `<option>${machine.number} - ${machine.name}</option>`
+                    option += `<option>${machine.number} - ${machine.name} - ${machine.time}s</option>`
                 }
+                option += '</select>'
             }
-            document.getElementById('selectMachine').innerHTML = option
+            document.getElementById('selectMachine1').innerHTML = option
         })
     })
     .catch(error => {
         // alert('Error')
     })
+}
+
+function putButtonBuild() {
+    document.getElementById('buildButton').innerHTML = '<button type="button" class="button" onclick="viewStep()">Construir Compuesto</button>'
 }
 
 function getCompounds(){

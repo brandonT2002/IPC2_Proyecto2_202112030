@@ -89,3 +89,17 @@ class Controller:
         if alg.buildCompound(compound):
             return alg.steps.getDot(),200
         return 'No se puede construir',200
+
+    def getMachinesC(self,compound):
+        if not self.llMachines.first:
+            return 'None'
+        compound = self.llCompounds.getCompound(compound).elements
+        current = self.llMachines.first
+        csv = ''
+        while current:
+            alg = Algorithm(current.machine)
+            if alg.buildCompound(compound):
+                csv += '\n' if csv != '' else ''
+                csv += f'{current.index + 1},{current.name},{alg.getTime()}'
+            current = current.next
+        return Response(csv,mimetype='text/csv'),200

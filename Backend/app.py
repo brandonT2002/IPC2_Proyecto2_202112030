@@ -32,6 +32,11 @@ def getDotM():
         data.get('dot')
     )
 
+@app.route('/machinesC',methods=['POST'])
+def getMachineC():
+    data = request.json
+    return ctrl.getMachinesC(data.get('compound'))
+
 @app.route('/elements',methods=['GET'])
 def getElements():
     return ctrl.getElements()
