@@ -16,7 +16,8 @@ class Read:
             nAtom = element.getElementsByTagName('numeroAtomico')[0].firstChild.data
             symbol = element.getElementsByTagName('simbolo')[0].firstChild.data
             name = element.getElementsByTagName('nombreElemento')[0].firstChild.data
-            llElements.insert(Element(nAtom,symbol,name))
+            if not llElements.existElement(nAtom,symbol,name):
+                llElements.insert(Element(nAtom,symbol,name))
         return llElements
 
     def getMachines(self,llElements,llMachines):
