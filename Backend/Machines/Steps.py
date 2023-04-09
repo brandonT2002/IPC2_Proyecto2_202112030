@@ -101,6 +101,56 @@ class Steps:
             current = current.next
         return instructions.getDot()
 
+    def getXML(self):
+        current = self.first.next
+        xml = ''
+        while current:
+            xml += '\n\t\t\t\t<tiempo>'
+            xml += f'\n\t\t\t\t\t<numeroSegundo>{current.index}</numeroSegundo>'
+            xml += f'\n\t\t\t\t\t<acciones>'
+            if current.index > 1:
+                current2 = current.machine.first
+                current3 = current.prev.machine.first
+                while current2:
+                    xml += f'\n\t\t\t\t\t\t<accionPin>'
+                    xml += f'\n\t\t\t\t\t\t\t<numeroPin>{current2.index + 1}</numeroPin>'
+                    xml += f'\n\t\t\t\t\t\t\t<accion>'
+                    elementsCurrent = current2.listElements
+                    elementsPrev = current3.listElements
+                    if elementsCurrent.getCurrent():
+                        if current.elmX != -1 and current.pinY != -1 and current.pinY == current2.index:
+                            xml += f'Fusionar {elementsCurrent.get(current.elmX).element.symbol}'
+                        else:
+                            if elementsCurrent.getCurrent().index < elementsPrev.getCurrent().index:
+                                xml += 'Mover Atrás'
+                            elif elementsCurrent.getCurrent().index > elementsPrev.getCurrent().index:
+                                xml += 'Mover Adelante'
+                            elif elementsCurrent.getCurrent().index == elementsPrev.getCurrent().index:
+                                xml += 'Esperar'
+                    else:
+                        xml += 'Sin usar'
+                    xml += f'</accion>'
+                    xml += f'\n\t\t\t\t\t\t</accionPin>'
+                    current2 = current2.next
+                    current3 = current3.next
+            else:
+                current2 = current.machine.first
+                while current2:
+                    xml += f'\n\t\t\t\t\t\t<accionPin>'
+                    xml += f'\n\t\t\t\t\t\t\t<numeroPin>{current2.index + 1}</numeroPin>'
+                    xml += f'\n\t\t\t\t\t\t\t<accion>'
+                    if current2.listElements.getCurrent():
+                        xml += 'Mover Adelante'
+                    else:
+                        xml += 'Sin usar'
+                    xml += f'</accion>'
+                    xml += f'\n\t\t\t\t\t\t</accionPin>'
+                    current2 = current2.next
+            xml += f'\n\t\t\t\t\t</acciones>'
+            xml += '\n\t\t\t\t</tiempo>'
+            current = current.next
+        return xml
+
     def createColors(self):
         self.colorsRow.insert('#B9E0FF')
         self.colorsRow.insert('#8D9EFF')

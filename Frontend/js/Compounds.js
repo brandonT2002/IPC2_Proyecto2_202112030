@@ -208,3 +208,32 @@ function viewStep(){
         })
     }
 }
+
+function output(){
+    fetch(`${api}/outFile`,{
+        method: 'GET',
+        headers
+    })
+    .then(response => {
+        response.text().then(text => {
+            if (text != 'None'){
+                swal({
+                    title: "¡Bien!",
+                    text: `${text}`,
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000
+                })
+            }
+            else{
+                swal({
+                    // title: "¡Oops!",
+                    text: "No hay datos Cargados",
+                    icon: "info",
+                    buttons: false,
+                    timer: 2000
+                })
+            }
+        })
+    })
+}

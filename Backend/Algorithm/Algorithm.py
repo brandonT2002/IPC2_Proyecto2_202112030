@@ -25,11 +25,13 @@ class Algorithm:
 
     def movePins(self):
         self.steps.insert(self.machine)
+        # inicializa una sola vez cada pin en el que haya un elemento del compuesto
         for i in range(self.positions.pinsID.size()):
             position = self.positions.pinsID.get(i)
             pin = self.machine.getPin(position.pinY)
             pin.listElements.startPin()
         self.steps.insert(self.machine)
+        # mientras haya elementos para fusionar
         while not self.positions.isEmpty():
             for i in range(self.positions.size()):
                 position = self.positions.get(i)
@@ -40,9 +42,9 @@ class Algorithm:
                     pin.listElements.moveLeft()
                 elif pin.listElements.getCurrent().index == position.elmX and not pin.listElements.moved:
                     pin.listElements.moved = True
+            self.steps.insert(self.machine)
             position = self.positions.get(0)
             pin = self.machine.getPin(position.pinY)
-            self.steps.insert(self.machine)
             if pin.listElements.getCurrent().index == position.elmX:
                 first = self.positions.pop()
                 self.steps.insert(self.machine,first.pinY,first.elmX)
@@ -72,6 +74,9 @@ class Algorithm:
             dot += f'</tr>\n'
         dot += '</TABLE>\n'
         dot += '];\n'
+
+    def getSeconds(self):
+        return self.steps.index - 1
 
     def getTime(self):
         return f'{self.steps.index - 1}'

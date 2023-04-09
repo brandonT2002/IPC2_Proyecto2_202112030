@@ -66,5 +66,9 @@ def getDotStep():
 def getDotStepDescription():
     return ctrl.getDotStepDescription()
 
+@app.route('/outFile',methods=['GET'])
+def makeOutFile():
+    return ctrl.makeOutFile()
+
 if __name__ == '__main__':
     app.run(debug = True, port = 4000)

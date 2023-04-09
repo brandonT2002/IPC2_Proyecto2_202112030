@@ -106,3 +106,41 @@ class Controller:
                 csv += f'{current.index + 1},{current.name},{alg.getTime()}'
             current = current.next
         return Response(csv,mimetype='text/csv'),200
+
+    def makeOutFile(self):
+        if not self.llCompounds.first:
+            return 'None'
+        current = self.llCompounds.first
+        xml = '<?xml version="1.0" encoding="UTF-8"?>\n<RESPUESTA>\n\t<listaCompuestos>'
+        while current:
+            xml += '\n\t\t<compuesto>'
+            xml += f'\n\t\t\t<nombre>{current.name}</nombre>'
+            # machines
+            currentM = self.llMachines.first
+            time = -1
+            machineName = ''
+            instructions = ''
+            while currentM:
+                alg = Algorithm(currentM.machine)
+                if alg.buildCompound(current.elements):
+                    newTime = alg.getSeconds()
+                    if time != -1:
+                        if newTime < time:
+                            time = newTime
+                            machineName = currentM.name
+                            instructions = alg.steps.getXML()
+                    else:
+                        time = newTime
+                        machineName = currentM.name
+                        instructions = alg.steps.getXML()
+                currentM = currentM.next
+            if time != -1:
+                xml += f'\n\t\t\t<maquina>{machineName}</maquina>'
+                xml += f'\n\t\t\t<tiempoOptimo>{time}</tiempoOptimo>'
+                xml += f'\n\t\t\t<instrucciones>{instructions}\n\t\t\t</instrucciones>'
+            xml += '\n\t\t</compuesto>'
+            current = current.next
+        xml += '\n\t</listaCompuestos>\n</RESPUESTA>'
+        with open('./Out/Compounds.xml','w',encoding='utf-8') as outFile:
+            outFile.write(xml)
+        return 'Salida Generada exitosamente',200
