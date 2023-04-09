@@ -64,11 +64,11 @@ function deleteInfo(){
         })
     })
     .catch(error => {
-        swal({
-            title: "¡Oops!",
-            text: "Ha ocurrido un error, no se pudo eliminar el prestamista",
-            icon: "error",
-        });
+        // swal({
+        //     title: "¡Oops!",
+        //     text: "Ha ocurrido un error, no se pudo eliminar el prestamista",
+        //     icon: "error",
+        // });
     })
 }
 
